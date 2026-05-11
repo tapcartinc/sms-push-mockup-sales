@@ -7,8 +7,6 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{min-height:100vh;background:#f0f0f0;font-family:-apple-system,'SF Pro Text',Inter,sans-serif;color:#111}
-
-/* SETUP SCREEN */
 .setup-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
 .setup-card{background:#fff;border-radius:20px;padding:40px;max-width:520px;width:100%;box-shadow:0 4px 24px rgba(0,0,0,.08)}
 .setup-card h1{font-size:22px;font-weight:800;margin-bottom:6px}
@@ -24,105 +22,84 @@ html,body{min-height:100vh;background:#f0f0f0;font-family:-apple-system,'SF Pro 
 .vibe-btn.selected{border-color:#6c63ff;background:#f0eeff;color:#6c63ff}
 .setup-btn{width:100%;padding:14px;background:linear-gradient(135deg,#6c63ff,#a855f7);color:#fff;font-size:15px;font-weight:700;border:none;border-radius:11px;cursor:pointer;margin-top:8px;transition:opacity .15s}
 .setup-btn:hover{opacity:.88}
-
-/* MAIN APP */
 .main-app{display:none;flex-direction:column;min-height:100vh}
-.toolbar{background:#fff;border-bottom:1px solid #e8e8e8;padding:12px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.toolbar{background:#fff;border-bottom:1px solid #e8e8e8;padding:12px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .toolbar-title{font-size:14px;font-weight:700;margin-right:auto}
 .tb-btn{padding:7px 14px;border:1.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
 .tb-btn:hover{border-color:#6c63ff;color:#6c63ff}
 .tb-btn.primary{background:linear-gradient(135deg,#6c63ff,#a855f7);color:#fff;border-color:transparent}
-.tb-btn.primary:hover{opacity:.88}
-
-.canvas-area{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px;gap:0;overflow:auto}
-
-/* PHONES */
-.phone-scene{display:flex;align-items:flex-start;gap:32px}
-.phone-col{display:flex;flex-direction:column;align-items:center;gap:12px}
-.phone-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#999}
-.phone-wrap{position:relative;width:270px;height:540px;/* 75% of 720 */overflow:hidden}
-.phone-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:#000;z-index:20}
+.canvas-area{flex:1;display:flex;align-items:center;justify-content:center;padding:32px 20px;overflow:auto}
+.phone-scene{display:flex;align-items:center;gap:28px}
+.phone-col{display:flex;flex-direction:column;align-items:center;gap:10px}
+.phone-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#999}
+.phone-wrap{position:relative;width:270px;height:540px;overflow:hidden;border-radius:50px 50px 0 0}
+.phone-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:#111;z-index:20}
 .phone-glow{position:absolute;inset:0;border-radius:44px;box-shadow:0 0 8px 4px rgba(250,195,152,.9),0 0 16px 8px rgba(240,75,130,.6),0 0 24px 12px rgba(74,71,255,.3);pointer-events:none;z-index:15}
 .phone-frame{position:relative;width:270px;height:720px;border-radius:50px;background:#0c1226;box-shadow:0 0 0 1px #1d2540,inset 0 0 0 1px rgba(255,255,255,.07),inset 0 0 0 6px #0c1226,inset 0 0 0 7px #1d2540}
-.phone-frame.sms-frame{background:#1c1c1e}
+.phone-frame.sms-frame{background:#1c1c1e;box-shadow:0 0 0 1px #3a3a3c,inset 0 0 0 1px rgba(255,255,255,.07),inset 0 0 0 6px #1c1c1e,inset 0 0 0 7px #3a3a3c}
 .screen{position:absolute;top:6px;left:6px;right:6px;bottom:6px;border-radius:44px;overflow:hidden}
 
-.btn-hw{position:absolute;background:linear-gradient(180deg,#1a1a1c 0%,#545458 18%,#8a8a90 50%,#545458 82%,#1a1a1c 100%);border-radius:1.5px;z-index:25}
-.btn-hw.l{left:-2.5px}.btn-hw.r{right:-2.5px}
+.hw{position:absolute;background:linear-gradient(180deg,#1a1a1c 0%,#545458 18%,#8a8a90 50%,#545458 82%,#1a1a1c 100%);border-radius:1.5px;z-index:25}
+.hw.l{left:-2.5px}.hw.r{right:-2.5px}
 .bs{top:88px;width:3.5px;height:24px}
 .bv1{top:124px;width:3.5px;height:56px}
 .bv2{top:188px;width:3.5px;height:56px}
 .bpw{top:152px;width:3.5px;height:90px}
-
-/* SMS SCREEN */
-.sms-screen{width:100%;height:100%;background:#1c1c1e;display:flex;flex-direction:column;font-size:14px}
+.sms-screen{width:100%;height:100%;background:#1c1c1e;display:flex;flex-direction:column}
 .sms-status{display:flex;justify-content:space-between;align-items:center;padding:12px 18px 0;color:rgba(255,255,255,.5);font-size:13px;font-weight:600;flex-shrink:0}
 .sms-contact{display:flex;flex-direction:column;align-items:center;padding:10px 0 8px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
 .sms-avatar{width:44px;height:44px;border-radius:50%;background:#4a4a4e;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
-.sms-avatar svg{width:28px;height:28px;fill:rgba(255,255,255,.4)}
 .sms-number{color:#fff;font-size:13px;font-weight:600}
-.sms-number span{color:#0a84ff;font-size:11px}
-.sms-meta{color:rgba(255,255,255,.4);font-size:10px;margin-top:1px}
+.sms-meta{color:rgba(255,255,255,.35);font-size:9px;margin-top:1px}
 .sms-messages{flex:1;overflow:hidden;padding:10px 10px 0;display:flex;flex-direction:column;gap:6px}
-.sms-date{text-align:center;color:rgba(255,255,255,.3);font-size:10px;margin:4px 0}
-.sms-bubble{background:#3a3a3c;color:#fff;border-radius:16px 16px 16px 4px;padding:9px 12px;font-size:11px;line-height:1.45;max-width:90%;word-break:break-word}
-.sms-bubble a{color:#0a84ff}
-.sms-footer{padding:8px 12px 10px;flex-shrink:0}
-.sms-spam-warning{color:rgba(255,255,255,.3);font-size:9px;text-align:center;line-height:1.4;margin-bottom:5px}
-.sms-spam-btn{display:block;width:100%;text-align:center;color:#0a84ff;font-size:11px;background:#2c2c2e;border-radius:10px;padding:7px;cursor:default}
-
-/* PUSH SCREEN */
+.sms-date-lbl{text-align:center;color:rgba(255,255,255,.3);font-size:9px;margin:2px 0}
+.sms-bubble{background:#3a3a3c;color:#fff;border-radius:16px 16px 16px 4px;padding:8px 10px;font-size:10px;line-height:1.45;max-width:92%;word-break:break-word}
+.sms-footer{padding:6px 10px 8px;flex-shrink:0}
+.sms-spam-txt{color:rgba(255,255,255,.25);font-size:8px;text-align:center;line-height:1.4;margin-bottom:4px}
+.sms-spam-btn{display:block;width:100%;text-align:center;color:#0a84ff;font-size:10px;background:#2c2c2e;border-radius:10px;padding:6px}
 .push-screen{width:100%;height:100%;background:linear-gradient(108deg,transparent 22%,rgba(255,255,255,.10) 36%,rgba(255,255,255,.03) 44%,rgba(255,255,255,.09) 54%,transparent 70%),linear-gradient(140deg,transparent 50%,rgba(255,255,255,.06) 62%,transparent 78%),radial-gradient(ellipse at 50% 110%,#1c2a5c 0%,#0e1840 55%,#060a26 100%);position:relative}
-.push-notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:90px;height:26px;background:#000;border-radius:18px;z-index:6}
-.push-status{position:absolute;top:0;left:0;right:0;height:46px;display:flex;justify-content:space-between;align-items:center;padding:14px 22px 0;color:rgba(255,255,255,.42);filter:blur(.7px);font-size:14px;font-weight:600;z-index:4}
-.push-card{position:absolute;top:52px;left:10px;right:10px;border-radius:18px;overflow:hidden;z-index:5}
+.push-notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:26px;background:#000;border-radius:18px;z-index:6}
+.push-status{position:absolute;top:0;left:0;right:0;height:44px;display:flex;justify-content:space-between;align-items:center;padding:12px 20px 0;color:rgba(255,255,255,.42);filter:blur(.7px);font-size:13px;font-weight:600;z-index:4}
+.push-card{position:absolute;top:50px;left:10px;right:10px;border-radius:16px;overflow:hidden;z-index:5}
 .push-head{background:linear-gradient(180deg,rgba(110,115,140,.55) 0%,rgba(80,85,110,.52) 100%);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:10px;gap:8px}
-.push-logo-wrap{flex-shrink:0;overflow:hidden;border-radius:10px;display:flex;align-items:center;justify-content:center;transition:width .2s,height .2s}
+.push-logo-wrap{flex-shrink:0;overflow:hidden;border-radius:9px;display:flex;align-items:center;justify-content:center;transition:width .2s,height .2s}
 .push-logo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
-.push-logo-placeholder{width:100%;height:100%;background:rgba(255,255,255,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);font-size:9px;text-align:center}
-.push-text{flex:1;min-width:0}
-.push-title-display{color:#fff;font-size:12px;font-weight:700;line-height:1.2;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.push-body-display{color:#e5e5ea;font-size:11px;line-height:1.35;margin-top:2px;letter-spacing:-.01em;word-break:break-word}
+.push-logo-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);font-size:8px;background:rgba(255,255,255,.1);border-radius:9px}
+.push-txt{flex:1;min-width:0}
+.push-title-d{color:#fff;font-size:12px;font-weight:700;line-height:1.2;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.push-body-d{color:#e5e5ea;font-size:11px;line-height:1.35;margin-top:2px;letter-spacing:-.01em;white-space:pre-wrap;word-break:break-word}
 .push-now{color:#c7c7cc;font-size:10px;font-weight:500;margin-left:4px;flex-shrink:0;align-self:flex-start;margin-top:1px}
-.push-hero-wrap{width:100%;height:200px;overflow:hidden;position:relative;background:#111;cursor:grab}
-.push-hero-wrap.dragging{cursor:grabbing}
+.hero-wrap{width:100%;height:190px;overflow:hidden;position:relative;background:#0a0f1e;cursor:grab;user-select:none}
+.hero-wrap.dragging{cursor:grabbing}
+.hero-img{position:absolute;transform-origin:0 0;pointer-events:none;user-select:none}
 
-.push-hero-img{position:absolute;transform-origin:center center;user-select:none;pointer-events:none}
-.push-hero-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-size:11px;background:linear-gradient(135deg,#1c2a5c,#0e1840)}
+.hero-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-size:11px;background:linear-gradient(135deg,#1c2a5c,#0e1840)}
 
-/* CONNECTOR */
-.connector{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:0 8px;margin-top:-20px}
-.connector-symbol{font-size:28px;cursor:pointer;user-select:none;transition:transform .15s}
-.connector-symbol:hover{transform:scale(1.2)}
-.connector-options{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.conn-opt{font-size:18px;cursor:pointer;opacity:.4;transition:opacity .15s;padding:4px}
-.conn-opt:hover,.conn-opt.active{opacity:1}
-
-/* SIDEBAR PANELS */
-.editor-bar{background:#fff;border-top:1px solid #e8e8e8;padding:16px 20px;display:flex;gap:16px;overflow-x:auto;align-items:flex-start}
-.panel{min-width:220px;display:flex;flex-direction:column;gap:10px}
-.panel-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#999;padding-bottom:4px;border-bottom:1px solid #f0f0f0}
-.field{display:flex;flex-direction:column;gap:4px}
-.field label{font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.3px}
-.field input[type=text],.field textarea,.field select{padding:7px 9px;border:1px solid #e0e0e0;border-radius:7px;font-size:12px;font-family:inherit;outline:none;transition:border-color .15s;resize:vertical}
-.field input:focus,.field textarea:focus,.field select:focus{border-color:#6c63ff}
-.field textarea{min-height:48px}
-.upload-box{border:1.5px dashed #ddd;border-radius:8px;padding:10px;text-align:center;cursor:pointer;color:#aaa;font-size:11px;position:relative;transition:border-color .15s}
-.upload-box:hover{border-color:#6c63ff}
-.upload-box input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.upload-thumb{width:40px;height:40px;object-fit:cover;border-radius:6px;margin:4px auto 0;display:block}
-.slider-row{display:flex;align-items:center;gap:8px}
-.slider-row input[type=range]{flex:1;accent-color:#6c63ff}
-.slider-row span{font-size:11px;color:#888;min-width:28px;text-align:right}
-.color-row{display:flex;align-items:center;gap:6px}
-.color-row input[type=color]{width:30px;height:30px;border:1px solid #ddd;border-radius:6px;padding:1px;cursor:pointer}
-.color-row input[type=text]{flex:1;padding:6px 8px;border:1px solid #e0e0e0;border-radius:7px;font-size:12px;outline:none}
-.emoji-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
-.emoji-btn{font-size:16px;cursor:pointer;padding:2px 4px;border-radius:4px;transition:background .1s}
-.emoji-btn:hover{background:#f0eeff}
-
-/* UTIL */
-.hidden{display:none!important}
+.connector{display:flex;flex-direction:column;align-items:center;gap:10px}
+.conn-sym{font-size:30px;line-height:1}
+.conn-opts{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:80px}
+.conn-opt{font-size:16px;cursor:pointer;opacity:.35;transition:opacity .15s;padding:3px;border-radius:4px}
+.conn-opt:hover,.conn-opt.on{opacity:1}
+.editor-bar{background:#fff;border-top:1px solid #e8e8e8;padding:14px 20px;display:flex;gap:20px;overflow-x:auto;align-items:flex-start;flex-shrink:0}
+.panel{min-width:200px;display:flex;flex-direction:column;gap:8px}
+.panel-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#999;padding-bottom:4px;border-bottom:1px solid #f0f0f0;margin-bottom:2px}
+.f{display:flex;flex-direction:column;gap:3px}
+.f label{font-size:10px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.3px}
+.f input[type=text],.f textarea,.f select{padding:6px 8px;border:1px solid #e0e0e0;border-radius:7px;font-size:12px;font-family:inherit;outline:none;transition:border-color .15s;resize:vertical;width:100%}
+.f input:focus,.f textarea:focus{border-color:#6c63ff}
+.f textarea{min-height:44px}
+.ubox{border:1.5px dashed #ddd;border-radius:7px;padding:8px;text-align:center;cursor:pointer;color:#bbb;font-size:10px;position:relative;transition:border-color .15s}
+.ubox:hover{border-color:#6c63ff}
+.ubox input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.srow{display:flex;align-items:center;gap:6px}
+.srow input[type=range]{flex:1;accent-color:#6c63ff;height:4px}
+.srow span{font-size:10px;color:#888;min-width:26px;text-align:right}
+.crow{display:flex;align-items:center;gap:5px}
+.crow input[type=color]{width:28px;height:28px;border:1px solid #ddd;border-radius:5px;padding:1px;cursor:pointer;flex-shrink:0}
+.crow input[type=text]{flex:1;padding:5px 7px;border:1px solid #e0e0e0;border-radius:7px;font-size:11px;outline:none}
+.erow{display:flex;flex-wrap:wrap;gap:3px;margin-top:1px}
+.ebtn{font-size:14px;cursor:pointer;padding:2px 3px;border-radius:3px;line-height:1;transition:background .1s}
+.ebtn:hover{background:#f0eeff}
 </style>
 </head>
 <body>
@@ -131,16 +108,14 @@ html,body{min-height:100vh;background:#f0f0f0;font-family:-apple-system,'SF Pro 
   <div class="setup-card">
     <h1> Push Mockup Generator</h1>
     <p>Fill in the details below and we'll auto-populate your mockup with on-brand copy.</p>
-
     <div class="setup-field">
       <label>Brand Website URL</label>
-      <input type="text" id="setup-url" placeholder="e.g. aembr.co" autocomplete="off">
+      <input type="text" id="sUrl" placeholder="e.g. aembr.co">
       <small>Used to auto-fill links in SMS copy</small>
     </div>
-
     <div class="setup-field">
       <label>Industry</label>
-      <select id="setup-industry">
+      <select id="sInd">
         <option value="">Select industry...</option>
         <option value="fashion">Fashion &amp; Apparel</option>
         <option value="home">Home &amp; Hobby</option>
@@ -149,204 +124,471 @@ html,body{min-height:100vh;background:#f0f0f0;font-family:-apple-system,'SF Pro 
         <option value="health">Health &amp; Wellness</option>
       </select>
     </div>
-
     <div class="setup-field">
       <label>Brand Vibe</label>
       <div class="vibe-grid" id="vibeGrid">
-        <button class="vibe-btn" data-vibe="chic">✦ Chic + Reserved</button>
-        <button class="vibe-btn" data-vibe="hype"> Hype + Bold</button>
-        <button class="vibe-btn" data-vibe="warm"> Warm + Personal</button>
-        <button class="vibe-btn" data-vibe="clinical"> Clinical + Expert</button>
-        <button class="vibe-btn" data-vibe="playful"> Playful + Witty</button>
-        <button class="vibe-btn" data-vibe="urgent"> Urgent + Direct</button>
-        <button class="vibe-btn" data-vibe="luxe"> Luxe + Elegant</button>
-        <button class="vibe-btn" data-vibe="modern"> Modern + Techy</button>
+        <button class="vibe-btn" data-v="chic">✦ Chic + Reserved</button>
+        <button class="vibe-btn" data-v="hype"> Hype + Bold</button>
+        <button class="vibe-btn" data-v="warm"> Warm + Personal</button>
+        <button class="vibe-btn" data-v="clinical"> Clinical + Expert</button>
+        <button class="vibe-btn" data-v="playful"> Playful + Witty</button>
+        <button class="vibe-btn" data-v="urgent"> Urgent + Direct</button>
+        <button class="vibe-btn" data-v="luxe"> Luxe + Elegant</button>
+        <button class="vibe-btn" data-v="modern"> Modern + Techy</button>
       </div>
     </div>
-
     <div class="setup-field">
-      <label>Prospect's First Name <span style="color:#aaa;font-weight:400">(optional)</span></label>
-      <input type="text" id="setup-name" placeholder="e.g. Kori">
+      <label>Prospect First Name <span style="color:#aaa;font-weight:400">(optional)</span></label>
+      <input type="text" id="sName" placeholder="e.g. Kori">
     </div>
-
-    <button class="setup-btn" id="setupBtn">Generate Mockup →</button>
+    <button class="setup-btn" id="genBtn">Generate Mockup →</button>
   </div>
 </div>
 
 <div class="main-app" id="mainApp">
   <div class="toolbar">
-    <span class="toolbar-title" id="toolbarTitle">SMS → Push Mockup</span>
+    <span class="toolbar-title" id="toolTitle">SMS → Push Mockup</span>
     <button class="tb-btn" id="resetBtn">← Start Over</button>
-    <button class="tb-btn primary" id="downloadBtn"> Download PNG</button>
+    <button class="tb-btn primary" id="dlBtn"> Download PNG</button>
   </div>
 
   <div class="canvas-area">
-    <div class="phone-scene" id="phoneScene">
-
+    <div class="phone-scene" id="scene">
       <div class="phone-col">
         <div class="phone-label">SMS</div>
-        <div class="phone-wrap" id="smsWrap">
+        <div class="phone-wrap">
           <div class="phone-frame sms-frame">
             <div class="screen">
               <div class="sms-screen">
                 <div class="sms-status">
-                  <span id="smsTime">1:34</span>
-                  <div style="display:flex;gap:5px;align-items:center">
-                    <svg width="15" height="10" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx=".7" fill="rgba(255,255,255,.5)"/><rect x="5" y="3.5" width="3" height="7.5" rx=".7" fill="rgba(255,255,255,.5)"/><rect x="10" y="1" width="3" height="10" rx=".7" fill="rgba(255,255,255,.5)"/></svg>
-                    <svg width="12" height="10" viewBox="0 0 24 18" fill="none"><path d="M12 4.5C8.5 4.5 5.3 6 3 8.4L1 6.3C3.9 3.4 7.7 1.5 12 1.5s8.1 1.9 11 4.8l-2 2.1C18.7 6 15.5 4.5 12 4.5z" fill="rgba(255,255,255,.5)"/><path d="M12 9.5C9.8 9.5 7.8 10.4 6.3 11.9l-2-2.1C6.2 7.9 9 6.5 12 6.5s5.8 1.4 7.7 3.3l-2 2.1C16.2 10.4 14.2 9.5 12 9.5z" fill="rgba(255,255,255,.5)"/><circle cx="12" cy="16" r="2" fill="rgba(255,255,255,.5)"/></svg>
-                    <svg width="22" height="10" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="22" height="10" rx="2" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><rect x="1.5" y="2.5" width="16" height="7" rx="1" fill="rgba(255,255,255,.5)"/><path d="M23 4.5v3a1.5 1.5 0 000-3z" fill="rgba(255,255,255,.5)"/></svg>
+                  <span>1:34</span>
+                  <div style="display:flex;gap:4px;align-items:center">
+                    <svg width="14" height="9" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx=".7" fill="rgba(255,255,255,.5)"/><rect x="5" y="3.5" width="3" height="7.5" rx=".7" fill="rgba(255,255,255,.5)"/><rect x="10" y="1" width="3" height="10" rx=".7" fill="rgba(255,255,255,.5)"/></svg>
+                    <svg width="20" height="9" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="22" height="10" rx="2" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><rect x="1.5" y="2.5" width="14" height="7" rx="1" fill="rgba(255,255,255,.5)"/><path d="M23 4.5v3a1.5 1.5 0 000-3z" fill="rgba(255,255,255,.5)"/></svg>
                   </div>
                 </div>
                 <div class="sms-contact">
                   <div class="sms-avatar">
-                    <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="rgba(255,255,255,.4)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
                   </div>
-                  <div class="sms-number"><span id="smsShortcode">82127</span> <span style="color:rgba(255,255,255,.4)">›</span></div>
-                  <div class="sms-meta">Text Message · SMS &nbsp;·&nbsp; <span id="smsDate1">Friday 8:01 AM</span></div>
+                  <div class="sms-number"><span id="dShortcode">82127</span> <span style="color:rgba(255,255,255,.35);font-size:11px">›</span></div>
+                  <div class="sms-meta">Text Message · SMS · Friday 8:01 AM</div>
                 </div>
                 <div class="sms-messages">
-                  <div class="sms-bubble" id="smsBubble1">Loading...</div>
-                  <div class="sms-date" id="smsDate2">Sunday 2:12 PM</div>
-                  <div class="sms-bubble" id="smsBubble2">Loading...</div>
+                  <div class="sms-bubble" id="dSms1">Loading...</div>
+                  <div class="sms-date-lbl">Sunday 2:12 PM</div>
+                  <div class="sms-bubble" id="dSms2">Loading...</div>
                 </div>
                 <div class="sms-footer">
-                  <div class="sms-spam-warning">If you did not expect this message from an unknown sender, it may be spam.</div>
+                  <div class="sms-spam-txt">If you did not expect this message from an unknown sender, it may be spam.</div>
                   <div class="sms-spam-btn">Report Spam</div>
                 </div>
               </div>
             </div>
-            <span class="btn-hw l bs"></span>
-            <span class="btn-hw l bv1"></span>
-            <span class="btn-hw l bv2"></span>
-            <span class="btn-hw r bpw"></span>
+            <span class="hw l bs"></span><span class="hw l bv1"></span><span class="hw l bv2"></span><span class="hw r bpw"></span>
           </div>
         </div>
       </div>
 
-      <div class="connector" id="connectorArea">
-        <div class="connector-symbol" id="connSymbol">→</div>
-        <div class="connector-options">
-          <span class="conn-opt active" data-sym="→" title="Arrow">→</span>
-          <span class="conn-opt" data-sym="+" title="Plus">+</span>
-          <span class="conn-opt" data-sym="" title="Heart"></span>
-          <span class="conn-opt" data-sym="" title="Fire"></span>
-          <span class="conn-opt" data-sym="" title="Sparkle"></span>
-          <span class="conn-opt" data-sym="" title="Rocket"></span>
-          <span class="conn-opt" data-sym="" title="Phone"></span>
-          <span class="conn-opt" data-sym="" title="Lightning"></span>
+      <div class="connector">
+        <div class="conn-sym" id="connSym">→</div>
+        <div class="conn-opts">
+          <span class="conn-opt on" data-s="→">→</span>
+          <span class="conn-opt" data-s="+">+</span>
+          <span class="conn-opt" data-s="💜">💜</span>
+          <span class="conn-opt" data-s="🔥">🔥</span>
+          <span class="conn-opt" data-s="✨">✨</span>
+          <span class="conn-opt" data-s="🚀">🚀</span>
+          <span class="conn-opt" data-s="📲">📲</span>
+          <span class="conn-opt" data-s="⚡">⚡</span>
         </div>
       </div>
 
       <div class="phone-col">
         <div class="phone-label">Rich Push</div>
-        <div class="phone-wrap" id="pushWrap">
+        <div class="phone-wrap">
           <div class="phone-glow"></div>
           <div class="phone-frame">
             <div class="screen">
               <div class="push-screen">
                 <div class="push-notch"></div>
                 <div class="push-status">
-                  <span id="pushTime">9:41</span>
-                  <div style="display:flex;gap:5px">
-                    <svg width="15" height="10" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx=".7" fill="rgba(255,255,255,.42)"/><rect x="5" y="3.5" width="3" height="7.5" rx=".7" fill="rgba(255,255,255,.42)"/><rect x="10" y="1" width="3" height="10" rx=".7" fill="rgba(255,255,255,.42)"/></svg>
-                  </div>
+                  <span>9:41</span>
+                  <svg width="14" height="9" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx=".7" fill="rgba(255,255,255,.42)"/><rect x="5" y="3.5" width="3" height="7.5" rx=".7" fill="rgba(255,255,255,.42)"/><rect x="10" y="1" width="3" height="10" rx=".7" fill="rgba(255,255,255,.42)"/></svg>
                 </div>
                 <div class="push-card">
                   <div class="push-head">
-                    <div class="push-logo-wrap" id="pushLogoWrap" style="width:44px;height:44px;background:#fff">
-                      <img id="pushLogoImg" src="" alt="" style="display:none">
-                      <div class="push-logo-placeholder" id="pushLogoPlaceholder" style="font-size:8px">Logo</div>
+                    <div class="push-logo-wrap" id="logoWrap" style="width:42px;height:42px;background:#fff">
+                      <img id="logoImg" src="" alt="" style="display:none">
+                      <div class="push-logo-ph" id="logoPh">Logo</div>
                     </div>
-                    <div class="push-text">
-                      <div class="push-title-display" id="pushTitleDisplay">Your notification title</div>
-                      <div class="push-body-display" id="pushBodyDisplay">Your notification body text.</div>
+                    <div class="push-txt">
+                      <div class="push-title-d" id="dTitle">Your notification title</div>
+                      <div class="push-body-d" id="dBody">Your notification body.</div>
                     </div>
                     <div class="push-now">NOW</div>
                   </div>
-                  <div class="push-hero-wrap" id="heroWrap">
-                    <img class="push-hero-img" id="heroImg" src="" alt="" style="display:none">
-                    <div class="push-hero-placeholder" id="heroPlaceholder">Upload hero image</div>
+                  <div class="hero-wrap" id="heroWrap">
+                    <img class="hero-img" id="heroImg" src="" alt="" style="display:none">
+                    <div class="hero-ph" id="heroPh">Upload hero image</div>
                   </div>
                 </div>
               </div>
             </div>
-            <span class="btn-hw l bs"></span>
-            <span class="btn-hw l bv1"></span>
-            <span class="btn-hw l bv2"></span>
-            <span class="btn-hw r bpw"></span>
+            <span class="hw l bs"></span><span class="hw l bv1"></span><span class="hw l bv2"></span><span class="hw r bpw"></span>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
   <div class="editor-bar">
-
     <div class="panel">
-      <div class="panel-title"> SMS Copy</div>
-      <div class="field">
-        <label>Short Code / Sender</label>
-        <input type="text" id="ed-shortcode" value="82127" maxlength="10">
-      </div>
-      <div class="field">
-        <label>Message 1 (Welcome)</label>
-        <textarea id="ed-sms1" rows="3"></textarea>
-      </div>
-      <div class="field">
-        <label>Message 2 (Promo)</label>
-        <textarea id="ed-sms2" rows="3"></textarea>
-      </div>
+      <div class="panel-title"> SMS</div>
+      <div class="f"><label>Short Code</label><input type="text" id="eCode" maxlength="10"></div>
+      <div class="f"><label>Message 1</label><textarea id="eSms1" rows="3"></textarea></div>
+      <div class="f"><label>Message 2</label><textarea id="eSms2" rows="3"></textarea></div>
     </div>
-
     <div class="panel">
-      <div class="panel-title"> Push Content</div>
-      <div class="field">
+      <div class="panel-title"> Push Copy</div>
+      <div class="f">
         <label>Title</label>
-        <input type="text" id="ed-pushTitle">
-        <div class="emoji-row" id="titleEmojis">
-          <span class="emoji-btn" data-target="ed-pushTitle"></span>
-          <span class="emoji-btn" data-target="ed-pushTitle"></span>
-          <span class="emoji-btn" data-target="ed-pushTitle"></span>
-          <span class="emoji-btn" data-target="ed-pushTitle"></span>
-          <span class="emoji-btn" data-target="ed-pushTitle"></span>
-          <span class="emoji-btn" data-target="ed-pushTitle"></span>
-          <span class="emoji-btn" data-target="ed-pushTitle"></span>
-          <span class="emoji-btn" data-target="ed-pushTitle"></span>
-          <span class="emoji-btn" data-target="ed-pushTitle"></span>
-          <span class="emoji-btn" data-target="ed-pushTitle"></span>
+        <input type="text" id="eTitle">
+        <div class="erow" id="titleEmoji">
+          <span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span>
         </div>
       </div>
-      <div class="field">
+      <div class="f">
         <label>Body (wraps at 30 chars)</label>
-        <textarea id="ed-pushBody" rows="3"></textarea>
-        <div class="emoji-row">
-          <span class="emoji-btn" data-target="ed-pushBody">→</span>
-          <span class="emoji-btn" data-target="ed-pushBody"></span>
-          <span class="emoji-btn" data-target="ed-pushBody"></span>
-          <span class="emoji-btn" data-target="ed-pushBody"></span>
-          <span class="emoji-btn" data-target="ed-pushBody">⮕</span>
-          <span class="emoji-btn" data-target="ed-pushBody"></span>
-          <span class="emoji-btn" data-target="ed-pushBody"></span>
-          <span class="emoji-btn" data-target="ed-pushBody"></span>
+        <textarea id="eBody" rows="3"></textarea>
+        <div class="erow">
+          <span class="ebtn" data-t="eBody">→</span><span class="ebtn" data-t="eBody">⮕</span><span class="ebtn" data-t="eBody"></span><span class="ebtn" data-t="eBody"></span><span class="ebtn" data-t="eBody"></span><span class="ebtn" data-t="eBody"></span><span class="ebtn" data-t="eBody"></span><span class="ebtn" data-t="eBody"></span><span class="ebtn" data-t="eBody"></span>
         </div>
       </div>
     </div>
-
     <div class="panel">
-      <div class="panel-title"> App Logo</div>
-      <div class="field">
-        <label>Upload Logo</label>
-        <div class="upload-box" id="logoUploadBox">
-          <div id="logoUploadText">Click to upload</div>
-          <img id="logoThumb" class="upload-thumb" style="display:none">
-          <input type="file" accept="image/*" id="logoFile">
+      <div class="panel-title"> Logo</div>
+      <div class="f">
+        <label>Upload</label>
+        <div class="ubox">Upload logo<input type="file" accept="image/*" id="logoFile"></div>
+      </div>
+      <div class="f">
+        <label>Size</label>
+        <div class="srow"><input type="range" id="logoSize" min="28" max="64" value="42"><span id="logoSizeVal">42</span></div>
+      </div>
+      <div class="f">
+        <label>Background Color</label>
+        <div class="crow">
+          <input type="color" id="logoBgColor" value="#FFFFFF">
+          <input type="text" id="logoBgHex" value="#FFFFFF" maxlength="7">
         </div>
       </div>
     </div>
-
+    <div class="panel">
+      <div class="panel-title"> Hero Image</div>
+      <div class="f">
+        <label>Upload</label>
+        <div class="ubox">Upload image<input type="file" accept="image/*" id="heroFile"></div>
+      </div>
+      <div class="f"><label>Or paste URL</label><input type="text" id="heroUrl" placeholder="https://..."></div>
+      <div class="f">
+        <label>Zoom</label>
+        <div class="srow"><input type="range" id="heroZoom" min="50" max="200" value="100"><span id="heroZoomVal">100%</span></div>
+      </div>
+      <div class="f" style="font-size:10px;color:#aaa;line-height:1.4">Drag the hero image to reposition it</div>
+    </div>
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+// ── COPY TEMPLATES ──────────────────────────────────────────
+var COPY = {
+  fashion:{
+    chic:{sms1:'The Archive Sale is here. Score 15% off our curated collection. Use code: STYLE15 at checkout. https://[BRANDURL].com/Afz70o Reply STOP to end.',sms2:'',pushStd:'A study in nuance',pushStdBody:'Elevated textures and subtle\ndetails for your closet.',pushName:'For you, [Name]',pushNameBody:'Shop our highly anticipated\nedit of premium luxury cuts.'},
+    hype:{sms1:'New heat just dropped. Grab your favorites before they are gone. Use code: NEXT20 at checkout. https://[BRANDURL].com/xJ92pL Reply STOP to end.',sms2:'',pushStd:'The drop is live! ',pushStdBody:"Don't sleep on these. The\nnew collection is moving fast.",pushName:'New heat for [Name]',pushNameBody:'Score the latest styles before\nthey sell out completely.'},
+    warm:{sms1:'We saved you a seat. Take 10% off your next find. Use code: FRIEND10 at checkout.',
+sms2:'https://[BRANDURL].com/bN41qR Reply STOP to end.',pushStd:'We saved your favorites',pushStdBody:'Your wishlist is ready.\nTake a look ⮕',pushName:'Hi [Name], still thinking?',pushNameBody:"Don't miss your top picks.\nThey are ready for you ⮕"},
+    clinical:{sms1:'Engineered for fit. Explore our technical fabrics today. Use code: TECH20 at checkout. https://[BRANDURL].com/vC66tY Reply STOP to end.',sms2:'',pushStd:'Precision fit and fabric',pushStdBody:'Technical fabrics designed\nfor a perfect fit and feel.',pushName:'[Name], your size is in',pushNameBody:'Your size is officially back.\nShop the restock.'},
+    playful:{sms1:'Your closet is bored. Give it something new to wear. Use code: TREAT20 at checkout. https://[BRANDURL].com/mK82pW Reply STOP to end.',sms2:'',pushStd:"Lookin' good",pushStdBody:'Those handpicked styles belong\nin your weekly rotation.',pushName:'Nice taste, [Name]!',pushNameBody:'Your cart called. Time to\nbring these pieces home.'},
+    urgent:{sms1:'Final call. Items in your cart are about to sell out. Use code: HURRY15 at checkout. https://[BRANDURL].com/zX11vB Reply STOP to end.',sms2:'',pushStd:'Final call on your cart',pushStdBody:'Items are moving fast.\nFinalize your order now.',pushName:'[Name], your cart is low',pushNameBody:'Final call! Check out now\nbefore your items sell out.'},
+    luxe:{sms1:'An invitation to our Private Sale. 20% off site-wide. Use code: ELITE20 at checkout. https://[BRANDURL].com/pL09qW Reply STOP to end.',sms2:'',pushStd:'A cut above',pushStdBody:'Experience a new level of\nquality with our latest edit.',pushName:'Reserved for [Name]',pushNameBody:'Elevate your look with the\nmost anticipated edit.'},
+    modern:{sms1:'System Update: New arrivals just landed in the app. Use code: VERSION2 at checkout. https://[BRANDURL].com/rT33nB Reply STOP to end.',sms2:'',pushStd:'Your style, upgraded',pushStdBody:'The latest drop is live.\nView your personalized feed ⮕',pushName:'Optimized for [Name]',pushNameBody:'See your unique product feed\nand shop the new drop now ⮕'}
+  },
+  home:{
+    chic:{sms1:'Elevate your space. Enjoy 15% off all minimalist essentials. Use code: CALM15 at checkout. https://[BRANDURL].com/jK22pX Reply STOP to end.',sms2:'',pushStd:'Refined living',pushStdBody:'Curated decor to bring\nbalance to every room.',pushName:'For your space, [Name]',pushNameBody:'Minimalist essentials for a\ncalm and balanced lifestyle.'},
+    hype:{sms1:'The restock is here! Grab the best-sellers before they vanish. Use code: ICONIC at checkout. https://[BRANDURL].com/qL99bV Reply STOP to end.',sms2:'',pushStd:'Your space, leveled up ',pushStdBody:"The restock you've been\nwaiting for is finally live.",pushName:'[Name], big home energy',pushNameBody:'Your space deserves an upgrade.\nGrab the restock now!'},
+    warm:{sms1:'A little something for your sanctuary. Enjoy 10% off. Use code: WELCOME at checkout. https://[BRANDURL].com/rX44tC Reply STOP to end.',sms2:'',pushStd:'Something for your home ',pushStdBody:'Create the perfect atmosphere\nwith these home arrivals.',pushName:'[Name], a gift for you?',pushNameBody:'Make your sanctuary even\nbetter. See your cart ⮕'},
+    clinical:{sms1:'Expert craftsmanship for your everyday. Shop the collection. Use code: BUILT15 at checkout. https://[BRANDURL].com/hM51nW Reply STOP to end.',sms2:'',pushStd:'Expertly crafted',pushStdBody:'Premium construction meets\nmodern design for your space.',pushName:'[Name], quality matters',pushNameBody:'Durable goods designed for\nthe modern home and lifestyle.'},
+    playful:{sms1:'Is your house feeling lonely? We can fix that. Use code: DECOR20 at checkout. https://[BRANDURL].com/zP88kL Reply STOP to end.',sms2:'',pushStd:'Your house is jealous',pushStdBody:'Complete the look of your\nhome with these top picks.',pushName:'[Name], treat your house',pushNameBody:'That item in your cart is\nthe missing piece to your room.'},
+    urgent:{sms1:'Almost sold out. Secure your favorites now. Use code: NOW20 at checkout. https://[BRANDURL].com/vB33nQ Reply STOP to end.',sms2:'',pushStd:'Almost sold out',pushStdBody:'Inventory is extremely limited.\nFinalize your order now.',pushName:'Only 1 left for [Name]!',pushNameBody:'Stock is low. Secure your\nfavorites before they are gone!'},
+    luxe:{sms1:'The Premium Edit. 20% off our most exclusive pieces. Use code: GRAND20 at checkout. https://[BRANDURL].com/fD11sX Reply STOP to end.',sms2:'',pushStd:'Curated for the home',pushStdBody:'Shop our most exclusive\ncollection of premium textures.',pushName:'Invited: [Name]',pushNameBody:'Transform your living space\nwith these exclusive textures.'},
+    modern:{sms1:'Design meets function. See the latest in home innovation. Use code: SMART15 at checkout. https://[BRANDURL].com/yH90pZ Reply STOP to end.',sms2:'',pushStd:'Smart home essentials',pushStdBody:'Innovative designs for the\nmodern home are in your cart.',pushName:'Designed for [Name]',pushNameBody:'Form meets function. Your\nhome upgrades are ready.'}
+  },
+  beauty:{
+    chic:{sms1:'Timeless beauty, now 15% off. Use code: GLOW15 at checkout. https://[BRANDURL].com/aK11rT Reply STOP to end.',sms2:'',pushStd:'A new ritual awaits',pushStdBody:'Curated beauty essentials\nfor your daily routine.',pushName:'For you, [Name]',pushNameBody:'Your next favorite product\nis waiting in your cart.'},
+    hype:{sms1:'The drop you have been waiting for is LIVE. Use code: DROP20 at checkout. https://[BRANDURL].com/bX22sW Reply STOP to end.',sms2:'',pushStd:'New drop just hit ',pushStdBody:"It's here. The collab\nyou have been waiting for.",pushName:'[Name], it dropped!',pushNameBody:'Your shade just restocked.\nGrab it before it sells out.'},
+    warm:{sms1:'A little self-care goes a long way. Enjoy 10% off. Use code: CARE10 at checkout. https://[BRANDURL].com/cN33tV Reply STOP to end.',sms2:'',pushStd:'You deserve this ',pushStdBody:'A little something to make\nyour routine feel special.',pushName:'Just for you, [Name]',pushNameBody:'Your favorites are waiting.\nTreat yourself today ⮕'},
+    clinical:{sms1:'Clinically proven. Now on sale. Use code: PROVEN15 at checkout. https://[BRANDURL].com/dM44uX Reply STOP to end.',sms2:'',pushStd:'Science-backed beauty',pushStdBody:'Formulated for real results.\nYour skin will thank you.',pushName:'[Name], results incoming',pushNameBody:'Your personalized routine\nis ready. Start today.'},
+    playful:{sms1:'Your skin is bored. Time for a glow-up. Use code: GLOWIN20 at checkout. https://[BRANDURL].com/eL55vY Reply STOP to end.',sms2:'',pushStd:'Glow different ',pushStdBody:'These picks are giving main\ncharacter energy. Shop now.',pushName:'[Name], glow up time!',pushNameBody:'Your cart is full of good\nthings. Time to check out.'},
+    urgent:{sms1:'Last chance. Your favorites are almost gone. Use code: LAST15 at checkout. https://[BRANDURL].com/fK66wZ Reply STOP to end.',sms2:'',pushStd:'Almost gone',pushStdBody:'Low stock alert on your\nfavorite products. Act fast.',pushName:'[Name], almost gone!',pushNameBody:'Your saved items are selling\nfast. Check out now.'},
+    luxe:{sms1:'Exclusive access to our prestige collection. Use code: PRESTIGE20 at checkout. https://[BRANDURL].com/gJ77xA Reply STOP to end.',sms2:'',pushStd:'Luxury, redefined',pushStdBody:'The finest formulas curated\nfor a discerning routine.',pushName:'Reserved for [Name]',pushNameBody:'Your exclusive edit is\nready. Elevate your ritual.'},
+    modern:{sms1:'Smarter beauty is here. Use code: SMART10 at checkout. https://[BRANDURL].com/hI88yB Reply STOP to end.',sms2:'',pushStd:'Beauty, upgraded ',pushStdBody:'AI-matched products for\nyour unique skin profile.',pushName:'Matched for [Name]',pushNameBody:'Your personalized beauty\nfeed is live. Shop now ⮕'}
+  },
+  food:{
+    chic:{sms1:'Curated flavors, 15% off. Use code: TASTE15 at checkout. https://[BRANDURL].com/iH99zC Reply STOP to end.',sms2:'',pushStd:'A taste of something special',pushStdBody:'Artisan selections curated\nfor the refined palate.',pushName:'Crafted for you, [Name]',pushNameBody:'Your next favorite flavor\nis in your cart today.'},
+    hype:{sms1:'NEW flavors just dropped. Get them before they sell out. Use code: FLAVOR20 at checkout. https://[BRANDURL].com/jG00aD Reply STOP to end.',sms2:'',pushStd:'New flavors just dropped ',pushStdBody:'The collab everyone is\ntalking about is live now.',pushName:'[Name], new drop!',pushNameBody:'Your flavor is live.\nGrab it before it sells out.'},
+    warm:{sms1:'Something good is waiting for you. Enjoy 10% off. Use code: YUMMY10 at checkout. https://[BRANDURL].com/kF11bE Reply STOP to end.',sms2:'',pushStd:'Made with care ',pushStdBody:'Good ingredients, good vibes.\nYour order is ready.',pushName:'Saved for you, [Name]',pushNameBody:'Your favorites are back.\nOrder today and enjoy.'},
+    clinical:{sms1:'Nutrition-forward. Now 15% off. Use code: FUEL15 at checkout. https://[BRANDURL].com/lE22cF Reply STOP to end.',sms2:'',pushStd:'Fuel your best self',pushStdBody:'Nutritionist-approved picks\nfor your wellness goals.',pushName:'[Name], optimized for you',pushNameBody:'Your macro-friendly picks\nare ready to order.'},
+    playful:{sms1:'Your taste buds are bored. Fix that. Use code: SNACK20 at checkout. https://[BRANDURL].com/mD33dG Reply STOP to end.',sms2:'',pushStd:'Snack attack incoming ',pushStdBody:'These flavors are dangerously\ngood. You have been warned.',pushName:'[Name], snack time!',pushNameBody:'Your cart is stacked with\nthe good stuff. Check out.'},
+    urgent:{sms1:'Selling fast. Grab yours before it is gone. Use code: HURRY15 at checkout. https://[BRANDURL].com/nC44eH Reply STOP to end.',sms2:'',pushStd:'Going fast',pushStdBody:'Limited stock on your\nfavorite items. Order now.',pushName:'[Name], almost gone!',pushNameBody:'Your saved items are low\nin stock. Order now.'},
+    luxe:{sms1:'Premium ingredients, exclusive offer. Use code: LUXE20 at checkout. https://[BRANDURL].com/oB55fI Reply STOP to end.',sms2:'',pushStd:'Indulge a little',pushStdBody:'Premium small-batch products\ncurated for the connoisseur.',pushName:'Exclusively for [Name]',pushNameBody:'Your premium selection\nis ready. Treat yourself.'},
+    modern:{sms1:'Smarter eating starts here. Use code: SMART15 at checkout. https://[BRANDURL].com/pA66gJ Reply STOP to end.',sms2:'',pushStd:'Eat smarter ',pushStdBody:'Your personalized nutrition\nfeed is live. Shop now ⮕',pushName:'Curated for [Name]',pushNameBody:'AI-matched nutrition picks\nfor your goals are ready ⮕'}
+  },
+  health:{
+    chic:{sms1:'Wellness essentials, 15% off. Use code: WELL15 at checkout. https://[BRANDURL].com/qZ77hK Reply STOP to end.',sms2:'',pushStd:'Elevate your wellness',pushStdBody:'Refined essentials curated\nfor your daily ritual.',pushName:'For you, [Name]',pushNameBody:'Your curated wellness edit\nis ready. Start today.'},
+    hype:{sms1:'New wellness drops just landed. Use code: ENERGY20 at checkout. https://[BRANDURL].com/rY88iL Reply STOP to end.',sms2:'',pushStd:'New drop is live ',pushStdBody:'The supplement drop everyone\nhas been waiting for.',pushName:'[Name], it is live!',pushNameBody:'Your wellness restock is\nhere. Grab it now.'},
+    warm:{sms1:'Take care of yourself. Enjoy 10% off. Use code: SELFCARE10 at checkout. https://[BRANDURL].com/sX99jM Reply STOP to end.',sms2:'',pushStd:'You deserve to feel good ',pushStdBody:'Small habits, big results.\nYour order is waiting.',pushName:'Thinking of you, [Name]',pushNameBody:'Your wellness favorites\nare ready when you are ⮕'},
+    clinical:{sms1:'Clinically formulated for results. Use code: RESULTS15 at checkout. https://[BRANDURL].com/tW00kN Reply STOP to end.',sms2:'',pushStd:'Results-driven wellness',pushStdBody:'Evidence-based formulas\nfor your health goals.',pushName:'[Name], formulated for you',pushNameBody:'Your clinical-grade picks\nare ready to order now.'},
+    playful:{sms1:'Your body deserves better snacks. Use code: HEALTHY20 at checkout. https://[BRANDURL].com/uV11lO Reply STOP to end.',sms2:'',pushStd:'Healthy never looked so fun ',pushStdBody:'Good-for-you products that\nactually taste amazing.',pushName:'[Name], treat yo self!',pushNameBody:'Your healthy indulgences\nare in your cart. Check out.'},
+    urgent:{sms1:'Stock is running low. Reorder now. Use code: RESTOCK15 at checkout. https://[BRANDURL].com/vU22mP Reply STOP to end.',sms2:'',pushStd:'Running low?',pushStdBody:'Do not break your streak.\nReorder before you run out.',pushName:'[Name], time to reorder',pushNameBody:'Your supply is running low.\nRestock now to stay on track.'},
+    luxe:{sms1:'Premium wellness, exclusive pricing. Use code: PREMIUM20 at checkout. https://[BRANDURL].com/wT33nQ Reply STOP to end.',sms2:'',pushStd:'Premium wellness awaits',pushStdBody:'The finest wellness products\ncurated for optimal health.',pushName:'Reserved for [Name]',pushNameBody:'Your premium wellness edit\nis ready. Elevate your ritual.'},
+    modern:{sms1:'Track, optimize, perform. Use code: OPTIMIZE15 at checkout. https://[BRANDURL].com/xS44oR Reply STOP to end.',sms2:'',pushStd:'Optimize your routine ',pushStdBody:'Smart wellness picks based\non your unique health data.',pushName:'Optimized for [Name]',pushNameBody:'Your personalized health\nfeed is live. Shop now ⮕'}
+  }
+};
+
+// ── STATE ──────────────────────────────────────────────────
+var brandUrl='',brandName='',prospectName='',selectedVibe='',selectedIndustry='';
+var heroX=0,heroY=0,heroW=0,heroH=0,heroZoom=1,heroDragging=false,heroDragStartX=0,heroDragStartY=0,heroOffsetX=0,heroOffsetY=0;
+
+// ── SETUP ──────────────────────────────────────────────────
+document.querySelectorAll('.vibe-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.vibe-btn').forEach(function(x){x.classList.remove('selected')});
+    b.classList.add('selected');
+    selectedVibe=b.dataset.v;
+  });
+});
+
+document.getElementById('genBtn').addEventListener('click',function(){
+  var url=document.getElementById('sUrl').value.trim();
+  var ind=document.getElementById('sInd').value;
+  var name=document.getElementById('sName').value.trim();
+  if(!url){alert('Please enter the brand URL.');return;}
+  if(!ind){alert('Please select an industry.');return;}
+  if(!selectedVibe){alert('Please select a brand vibe.');return;}
+  brandUrl=url.replace(/^https?:\/\//,'').replace(/\/$/,'');
+  brandName=brandUrl.split('.')[0];
+  brandName=brandName.charAt(0).toUpperCase()+brandName.slice(1);
+  prospectName=name;
+  selectedIndustry=ind;
+  populateCopy();
+  document.getElementById('setupScreen').style.display='none';
+  document.getElementById('mainApp').style.display='flex';
+  document.getElementById('toolTitle').textContent=brandName+' — SMS → Push Mockup';
+  startClock();
+});
+
+function populateCopy(){
+  var ind=COPY[selectedIndustry];
+  var vibe=ind&&ind[selectedVibe]?ind[selectedVibe]:null;
+  if(!vibe)return;
+  var hasPerson=prospectName.length>0;
+  function fill(s){
+    s=(s||'').replace(/\[BRANDURL\]/g,brandUrl).replace(/\[Name\]/g,prospectName||'');
+    return s;
+  }
+  // SMS
+  var sms1=fill(vibe.sms1);
+  var sms2=fill(vibe.sms2||('Your '+brandName+' app is ready. https://'+brandUrl+' Reply STOP to end.'));
+  document.getElementById('eSms1').value=sms1;
+  document.getElementById('eSms2').value=sms2;
+  document.getElementById('dSms1').textContent=sms1;
+  document.getElementById('dSms2').textContent=sms2;
+  document.getElementById('eCode').value='82127';
+  document.getElementById('dShortcode').textContent='82127';
+  // Push
+  var pushTitle=hasPerson?fill(vibe.pushName):fill(vibe.pushStd);
+  var pushBody=hasPerson?fill(vibe.pushNameBody):fill(vibe.pushStdBody);
+  document.getElementById('eTitle').value=pushTitle;
+  document.getElementById('eBody').value=pushBody;
+  renderPushTitle(pushTitle);
+  renderPushBody(pushBody);
+}
+
+// ── CLOCK ──────────────────────────────────────────────────
+function startClock(){
+  function tick(){var n=new Date(),h=n.getHours(),m=n.getMinutes(),s=h+':'+(m<10?'0':'')+m;document.getElementById('pushTime')&&(document.getElementById('pushTime').textContent=s);}
+  tick();setInterval(tick,10000);
+}
+
+// ── PUSH TITLE ─────────────────────────────────────────────
+function renderPushTitle(v){document.getElementById('dTitle').textContent=v||'Your notification title';}
+
+// ── PUSH BODY (word-wrap at 30 chars) ──────────────────────
+function wrapAt30(text){
+  var lines=[],words=text.split(' '),cur='';
+  for(var i=0;i<words.length;i++){
+    var w=words[i];
+    if(cur.length===0){cur=w;}
+    else if(cur.length+1+w.length<=30){cur+=' '+w;}
+    else{lines.push(cur);cur=w;}
+  }
+  if(cur)lines.push(cur);
+  return lines.join('\n');
+}
+function renderPushBody(v){document.getElementById('dBody').textContent=wrapAt30(v||'Your notification body.');}
+
+// ── SMS EDITORS ────────────────────────────────────────────
+document.getElementById('eSms1').addEventListener('input',function(){document.getElementById('dSms1').textContent=this.value;});
+document.getElementById('eSms2').addEventListener('input',function(){document.getElementById('dSms2').textContent=this.value;});
+document.getElementById('eCode').addEventListener('input',function(){document.getElementById('dShortcode').textContent=this.value;});
+
+// ── PUSH EDITORS ───────────────────────────────────────────
+document.getElementById('eTitle').addEventListener('input',function(){renderPushTitle(this.value);});
+document.getElementById('eBody').addEventListener('input',function(){renderPushBody(this.value);});
+
+// ── EMOJI BUTTONS ──────────────────────────────────────────
+document.querySelectorAll('.ebtn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var t=document.getElementById(btn.dataset.t);
+    if(!t)return;
+    var pos=t.selectionStart||t.value.length;
+    t.value=t.value.slice(0,pos)+btn.textContent+t.value.slice(pos);
+    t.dispatchEvent(new Event('input'));
+    t.focus();
+  });
+});
+
+// ── CONNECTOR ─────────────────────────────────────────────
+document.querySelectorAll('.conn-opt').forEach(function(o){
+  o.addEventListener('click',function(){
+    document.querySelectorAll('.conn-opt').forEach(function(x){x.classList.remove('on')});
+    o.classList.add('on');
+    document.getElementById('connSym').textContent=o.dataset.s;
+  });
+});
+
+// ── LOGO ──────────────────────────────────────────────────
+document.getElementById('logoFile').addEventListener('change',function(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();r.onload=function(ev){
+    var img=document.getElementById('logoImg');
+    img.src=ev.target.result;img.style.display='block';
+    document.getElementById('logoPh').style.display='none';
+  };r.readAsDataURL(f);
+});
+document.getElementById('logoSize').addEventListener('input',function(){
+  var v=parseInt(this.value);
+  document.getElementById('logoSizeVal').textContent=v;
+  var w=document.getElementById('logoWrap');
+  w.style.width=v+'px';w.style.height=v+'px';
+});
+document.getElementById('logoBgColor').addEventListener('input',function(){
+  document.getElementById('logoBgHex').value=this.value;
+  document.getElementById('logoWrap').style.background=this.value;
+});
+document.getElementById('logoBgHex').addEventListener('input',function(){
+  if(/^#[0-9a-fA-F]{6}$/.test(this.value)){
+    document.getElementById('logoBgColor').value=this.value;
+    document.getElementById('logoWrap').style.background=this.value;
+  }
+});
+
+// ── HERO IMAGE ────────────────────────────────────────────
+function loadHero(src){
+  var img=document.getElementById('heroImg');
+  var ph=document.getElementById('heroPh');
+  var wrap=document.getElementById('heroWrap');
+  img.onload=function(){
+    heroW=img.naturalWidth;heroH=img.naturalHeight;
+    heroZoom=parseFloat(document.getElementById('heroZoom').value)/100;
+    heroOffsetX=0;heroOffsetY=0;
+    positionHero();
+    img.style.display='block';
+    ph.style.display='none';
+  };
+  img.src=src;
+}
+function positionHero(){
+  var img=document.getElementById('heroImg');
+  var wrap=document.getElementById('heroWrap');
+  var ww=wrap.offsetWidth||250,wh=wrap.offsetHeight||190;
+  var scale=heroZoom*(Math.max(ww/heroW,wh/heroH));
+  var sw=heroW*scale,sh=heroH*scale;
+  var cx=(ww-sw)/2+heroOffsetX;
+  var cy=(wh-sh)/2+heroOffsetY;
+  img.style.width=sw+'px';img.style.height=sh+'px';
+  img.style.left=cx+'px';img.style.top=cy+'px';
+  img.style.position='absolute';
+}
+document.getElementById('heroFile').addEventListener('change',function(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();r.onload=function(ev){loadHero(ev.target.result);};r.readAsDataURL(f);
+});
+document.getElementById('heroUrl').addEventListener('input',function(){
+  if(this.value.trim())loadHero(this.value.trim());
+});
+document.getElementById('heroZoom').addEventListener('input',function(){
+  heroZoom=parseInt(this.value)/100;
+  document.getElementById('heroZoomVal').textContent=this.value+'%';
+  positionHero();
+});
+
+// Hero drag
+var heroWrap=document.getElementById('heroWrap');
+heroWrap.addEventListener('mousedown',function(e){
+  if(!document.getElementById('heroImg').src)return;
+  heroDragging=true;heroDragStartX=e.clientX;heroDragStartY=e.clientY;
+  heroWrap.classList.add('dragging');e.preventDefault();
+});
+document.addEventListener('mousemove',function(e){
+  if(!heroDragging)return;
+  heroOffsetX+=(e.clientX-heroDragStartX);
+  heroOffsetY+=(e.clientY-heroDragStartY);
+  heroDragStartX=e.clientX;heroDragStartY=e.clientY;
+  positionHero();
+});
+document.addEventListener('mouseup',function(){heroDragging=false;heroWrap.classList.remove('dragging');});
+
+// Touch drag
+heroWrap.addEventListener('touchstart',function(e){
+  if(!document.getElementById('heroImg').src)return;
+  heroDragging=true;
+  heroDragStartX=e.touches[0].clientX;heroDragStartY=e.touches[0].clientY;
+  e.preventDefault();
+},{passive:false});
+document.addEventListener('touchmove',function(e){
+  if(!heroDragging)return;
+  heroOffsetX+=(e.touches[0].clientX-heroDragStartX);
+  heroOffsetY+=(e.touches[0].clientY-heroDragStartY);
+  heroDragStartX=e.touches[0].clientX;heroDragStartY=e.touches[0].clientY;
+  positionHero();
+},{passive:false});
+document.addEventListener('touchend',function(){heroDragging=false;});
+
+// ── RESET ─────────────────────────────────────────────────
+document.getElementById('resetBtn').addEventListener('click',function(){
+  document.getElementById('mainApp').style.display='none';
+  document.getElementById('setupScreen').style.display='flex';
+  selectedVibe='';
+  document.querySelectorAll('.vibe-btn').forEach(function(b){b.classList.remove('selected')});
+});
+
+// ── DOWNLOAD ─────────────────────────────────────────────
+document.getElementById('dlBtn').addEventListener('click',function(){
+  var btn=this;btn.textContent='Generating...';btn.disabled=true;
+  var scene=document.getElementById('scene');
+  html2canvas(scene,{scale:2,useCORS:true,allowTaint:true,backgroundColor:'#f0f0f0',logging:false}).then(function(canvas){
+    var a=document.createElement('a');
+    a.download=(brandName||'mockup')+'-push-mockup.png';
+    a.href=canvas.toDataURL('image/png');a.click();
+    btn.textContent=' Download PNG';btn.disabled=false;
+  }).catch(function(){
+    alert('Download failed. Try uploading images as files instead of URLs.');
+    btn.textContent=' Download PNG';btn.disabled=false;
+  });
+});
+</script>
 </body>
 </html>
