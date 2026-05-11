@@ -40,7 +40,8 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
 .phone-clip::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:#0a0a0a;z-index:30}
 .phone-wrap{position:relative;top:80px;left:80px;width:var(--phone-w);height:var(--phone-h)}
 .phone-glow{position:absolute;top:0;left:0;right:0;bottom:0;z-index:0;border-radius:44px;box-shadow:0 0 8px 4px rgba(250,195,152,.9),0 0 16px 8px rgba(240,75,130,.6),0 0 24px 12px rgba(74,71,255,.3);pointer-events:none;opacity:0}
-.phone-wrap.right .phone-glow{opacity:1}[4:03 PM].phone{position:relative;z-index:1;width:100%;height:100%;border-radius:50px;background:#0a0a0c;box-shadow:0 0 0 1px #2a2a2e,inset 0 0 0 1px rgba(255,255,255,.06),inset 0 0 0 6px #0a0a0c,inset 0 0 0 7px #2a2a2e}
+.phone-wrap.right .phone-glow{opacity:1}
+.phone{position:relative;z-index:1;width:100%;height:100%;border-radius:50px;background:#0a0a0c;box-shadow:0 0 0 1px #2a2a2e,inset 0 0 0 1px rgba(255,255,255,.06),inset 0 0 0 6px #0a0a0c,inset 0 0 0 7px #2a2a2e}
 .phone.navy{background:#0c1226;box-shadow:0 0 0 1px #1d2540,inset 0 0 0 1px rgba(255,255,255,.07),inset 0 0 0 6px #0c1226,inset 0 0 0 7px #1d2540}
 .btn{position:absolute;background:linear-gradient(180deg,#1a1a1c 0%,#545458 18%,#8a8a90 50%,#545458 82%,#1a1a1c 100%);border-radius:1.5px;z-index:2;box-shadow:0 0 0 .5px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.15)}
 .btn.left{left:-2.5px}.btn.right{right:-2.5px}
@@ -73,8 +74,8 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
 .spam-btn{display:inline-block;background:#1c1c1e;color:#007AFF;font-size:11px;font-weight:700;padding:5px 16px;border-radius:14px;margin-top:8px}
 /* PUSH SCREEN */
 .push-card{position:absolute;top:60px;left:12px;right:12px;border-radius:18px;overflow:hidden;color:#fff;z-index:5;background:transparent}
-.push-head{background:linear-gradient(180deg,rgba(110,115,140,.55) 0%,rgba(80,85,110,.52) 100%);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:12px;gap:10px}[4:03 PM].push-logo{width:52px;height:52px;border-radius:11px;flex-shrink:0;overflow:hidden}```
-[4:03 PM]```
+.push-head{background:linear-gradient(180deg,rgba(110,115,140,.55) 0%,rgba(80,85,110,.52) 100%);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:12px;gap:10px}
+.push-logo{width:52px;height:52px;border-radius:11px;flex-shrink:0;overflow:hidden}
 .push-logo.placeholder{background:rgba(20,22,28,.95);border:1px dashed rgba(255,255,255,.45);color:rgba(255,255,255,.85);font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;display:flex;align-items:center;justify-content:center}
 .push-logo img{width:100%;height:100%;object-fit:cover;display:block}
 .push-text{flex:1;min-width:0}
@@ -116,74 +117,74 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
 <body>
 
 <div class="setup" id="setup">
-  <div class="setup-card">
-    <h1>:iphone: Push Mockup Generator</h1>
-    <p>Fill in the details and we'll auto-populate your mockup with on-brand copy.</p>
-    <div class="sf">
-      <label>Brand Website URL</label>
-      <input type="text" id="sUrl" placeholder="e.g. aembr.co">
-      <small>Used to auto-fill links in SMS copy</small>
-    </div>
-    <div class="sf">
-      <label>Industry</label>
-      <select id="sInd">[4:03 PM]<option value="">Select industry...</option>
-        <option value="fashion">Fashion &amp; Apparel</option>
-        <option value="home">Home &amp; Hobby</option>
-        <option value="beauty">Beauty &amp; Cosmetics</option>
-        <option value="food">Food &amp; Beverage</option>
-        <option value="health">Health &amp; Wellness</option>
-      </select>
-    </div>
-    <div class="sf">
-      <label>Brand Vibe</label>
-      <div class="vibe-grid" id="vibeGrid">
-        <button class="vb" data-v="chic">✦ Chic + Reserved</button>
-        <button class="vb" data-v="hype">:fire: Hype + Bold</button>
-        <button class="vb" data-v="warm">:white_heart: Warm + Personal</button>
-        <button class="vb" data-v="clinical">:microscope: Clinical + Expert</button>
-        <button class="vb" data-v="playful">:smile: Playful + Witty</button>
-        <button class="vb" data-v="urgent">:zap: Urgent + Direct</button>
-        <button class="vb" data-v="luxe">:crown: Luxe + Elegant</button>
-        <button class="vb" data-v="modern">:computer: Modern + Techy</button>
-      </div>
-    </div>
-    <div class="sf">
-      <label>Prospect First Name <span style="color:#aaa;font-weight:400">(optional)</span></label>
-      <input type="text" id="sName" placeholder="e.g. Kori">
-    </div>
-    <button class="gen-btn" id="genBtn">Generate Mockup →</button>
-  </div>
+  <div class="setup-card">
+    <h1> Push Mockup Generator</h1>
+    <p>Fill in the details and we'll auto-populate your mockup with on-brand copy.</p>
+    <div class="sf">
+      <label>Brand Website URL</label>
+      <input type="text" id="sUrl" placeholder="e.g. aembr.co">
+      <small>Used to auto-fill links in SMS copy</small>
+    </div>
+    <div class="sf">
+      <label>Industry</label>
+      <select id="sInd">
+        <option value="">Select industry...</option>
+        <option value="fashion">Fashion &amp; Apparel</option>
+        <option value="home">Home &amp; Hobby</option>
+        <option value="beauty">Beauty &amp; Cosmetics</option>
+        <option value="food">Food &amp; Beverage</option>
+        <option value="health">Health &amp; Wellness</option>
+      </select>
+    </div>
+    <div class="sf">
+      <label>Brand Vibe</label>
+      <div class="vibe-grid" id="vibeGrid">
+        <button class="vb" data-v="chic">✦ Chic + Reserved</button>
+        <button class="vb" data-v="hype"> Hype + Bold</button>
+        <button class="vb" data-v="warm"> Warm + Personal</button>
+        <button class="vb" data-v="clinical"> Clinical + Expert</button>
+        <button class="vb" data-v="playful"> Playful + Witty</button>
+        <button class="vb" data-v="urgent"> Urgent + Direct</button>
+        <button class="vb" data-v="luxe"> Luxe + Elegant</button>
+        <button class="vb" data-v="modern"> Modern + Techy</button>
+      </div>
+    </div>
+    <div class="sf">
+      <label>Prospect First Name <span style="color:#aaa;font-weight:400">(optional)</span></label>
+      <input type="text" id="sName" placeholder="e.g. Kori">
+    </div>
+    <button class="gen-btn" id="genBtn">Generate Mockup →</button>
+  </div>
 </div>
 
 <div class="app" id="app">
-  <div class="toolbar">
-    <span class="toolbar-title" id="toolTitle">SMS → Push Mockup</span>
-    <button class="tbtn" id="resetBtn">← Start Over</button>
-    <button class="tbtn primary" id="dlBtn">:arrow_down: Download PNG</button>
-  </div>
-  <div class="canvas">
-    <div class="mockup-canvas" id="mockupCanvas">
+  <div class="toolbar">
+    <span class="toolbar-title" id="toolTitle">SMS → Push Mockup</span>
+    <button class="tbtn" id="resetBtn">← Start Over</button>
+    <button class="tbtn primary" id="dlBtn"> Download PNG</button>
+  </div>
+  <div class="canvas">
+    <div class="mockup-canvas" id="mockupCanvas">
 
-      <!-- SMS PHONE -->
-      <div class="phone-clip">
-        <div class="phone-wrap left">
-          <div class="phone-glow"></div>
-          <div class="phone">
-            <div class="screen">
-              <div class="notch"></div>
-              <div class="status">
-                <span>1:34</span>
-                <div class="icons">
-                  <svg width="17" height="12" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx=".7" fill="#fff"/><rect x="5" y="3.5" width="3" height="7.5" rx=".7" fill="#fff"/><rect x="10" y="1" width="3" height="10" rx=".7" fill="#fff"/></svg>
-                  <svg width="16" height="12" viewBox="0 0 24 18" fill="none"><path d="M12 4.5C8.5 4.5 5.3 6 3 8.4L1 6.3C3.9 3.4 7.7 1.5 12 1.5s8.1 1.9 11 4.8l-2 2.1C18.7 6 15.5 4.5 12 4.5z" fill="#fff"/><path d="M12 9.5C9.8 9.5 7.8 10.4 6.3 11.9l-2-2.1C6.2 7.9 9 6.5 12 6.5s5.8 1.4 7.7 3.3l-2 2.1C16.2 10.4 14.2 9.5 12 9.5z" fill="#fff"/><circle cx="12" cy="16" r="2" fill="#fff"/></svg>
-                  <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="22" height="10" rx="2" stroke="#fff" stroke-width="1.5"/><rect x="1.5" y="2.5" width="16" height="7" rx="1" fill="#fff"/><path d="M23 4.5v3a1.5 1.5 0 000-3z" fill="#fff"/></svg>
-                </div>
-              </div>
-              <div class="msg-back">‹</div>
-              <div class="recipient-block">
-                <div class="avatar"><svg viewBox="0 0 50 50" fill="rgba(255,255,255,0.55)"><circle cx="25" cy="18" r="10"/><path d="M5 45c0-11 9-18 20-18s20 7 20 18"/></svg></div>
-                <div class="recipient"><span id="dShortcode">82127</span> <span class="chev">›</span></div>
-```[4:03 PM]                <div class="meta">Text Message · SMS<br>Friday 8:01 AM</div>
+      <div class="phone-clip">
+        <div class="phone-wrap left">
+          <div class="phone-glow"></div>
+          <div class="phone">
+            <div class="screen">
+              <div class="notch"></div>
+              <div class="status">
+                <span>1:34</span>
+                <div class="icons">
+                  <svg width="17" height="12" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx=".7" fill="#fff"/><rect x="5" y="3.5" width="3" height="7.5" rx=".7" fill="#fff"/><rect x="10" y="1" width="3" height="10" rx=".7" fill="#fff"/></svg>
+                  <svg width="16" height="12" viewBox="0 0 24 18" fill="none"><path d="M12 4.5C8.5 4.5 5.3 6 3 8.4L1 6.3C3.9 3.4 7.7 1.5 12 1.5s8.1 1.9 11 4.8l-2 2.1C18.7 6 15.5 4.5 12 4.5z" fill="#fff"/><path d="M12 9.5C9.8 9.5 7.8 10.4 6.3 11.9l-2-2.1C6.2 7.9 9 6.5 12 6.5s5.8 1.4 7.7 3.3l-2 2.1C16.2 10.4 14.2 9.5 12 9.5z" fill="#fff"/><circle cx="12" cy="16" r="2" fill="#fff"/></svg>
+                  <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="22" height="10" rx="2" stroke="#fff" stroke-width="1.5"/><rect x="1.5" y="2.5" width="16" height="7" rx="1" fill="#fff"/><path d="M23 4.5v3a1.5 1.5 0 000-3z" fill="#fff"/></svg>
+                </div>
+              </div>
+              <div class="msg-back">‹</div>
+              <div class="recipient-block">
+                <div class="avatar"><svg viewBox="0 0 50 50" fill="rgba(255,255,255,0.55)"><circle cx="25" cy="18" r="10"/><path d="M5 45c0-11 9-18 20-18s20 7 20 18"/></svg></div>
+                <div class="recipient"><span id="dShortcode">82127</span> <span class="chev">›</span></div>
+                <div class="meta">Text Message · SMS<br>Friday 8:01 AM</div>
               </div>
               <div class="bubbles">
                 <div style="position:relative;display:inline-block">
@@ -194,97 +195,292 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
               <div class="timestamp">Sunday 2:12 PM</div>
               <div class="bubbles last">
                 <div style="position:relative;display:inline-block">
-                  <div class="bubble" id="dSms2">Loading...</div>[4:03 PM]```
-<svg style="position:absolute;bottom:-1px;left:-6px" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M14 0 C14 8 6 12 0 14 C4 10 6 6 6 0Z" fill="#1c1c1e"/></svg>
-                </div>
-              </div>
-              <div class="spam-warn">If you did not expect this message from an unknown sender, it may be spam<br><span class="spam-btn">Report Spam</span></div>
-            </div>
-            <span class="btn left btn-silent"></span>
-            <span class="btn left btn-vol-up"></span>
-            <span class="btn left btn-vol-dn"></span>
-            <span class="btn right btn-power"></span>
-          </div>
-        </div>
-      </div>
+                  <div class="bubble" id="dSms2">Loading...</div>
+                  <svg style="position:absolute;bottom:-1px;left:-6px" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M14 0 C14 8 6 12 0 14 C4 10 6 6 6 0Z" fill="#1c1c1e"/></svg>
+                </div>
+              </div>
+              <div class="spam-warn">If you did not expect this message from an unknown sender, it may be spam<br><span class="spam-btn">Report Spam</span></div>
+            </div>
+            <span class="btn left btn-silent"></span>
+            <span class="btn left btn-vol-up"></span>
+            <span class="btn left btn-vol-dn"></span>
+            <span class="btn right btn-power"></span>
+          </div>
+        </div>
+      </div>
 
-      <!-- CONNECTOR -->
-      <div style="align-self:center;display:flex;flex-direction:column;align-items:center;gap:12px">
-        <svg class="arrow" id="arrowSvg" viewBox="0 0 60 14" xmlns="http://www.w3.org/2000/svg" fill="none"><line x1="2" y1="7" x2="50" y2="7" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/><path d="M42 1 L56 7 L42 13" stroke="#0a0a0a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div id="connEmoji" style="font-size:32px;display:none;line-height:1"></div>
-        <div class="conn-opts">
-          <span class="copt on" data-s="arrow" title="Arrow">→</span>
-          <span class="copt" data-s="+" title="Plus">+</span>
-          <span class="copt" data-s=":purple_heart:" title="Heart">:purple_heart:</span>
-          <span class="copt" data-s=":fire:" title="Fire">:fire:</span>
-          <span class="copt" data-s=":sparkles:" title="Sparkle">:sparkles:</span>
-          <span class="copt" data-s=":rocket:" title="Rocket">:rocket:</span>
-          <span class="copt" data-s=":calling:" title="Phone">:calling:</span>
-          <span class="copt" data-s=":zap:" title="Lightning">:zap:</span>
-        </div>
-      </div>
+      <div style="align-self:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+        <svg class="arrow" id="arrowSvg" viewBox="0 0 60 14" xmlns="http://www.w3.org/2000/svg" fill="none"><line x1="2" y1="7" x2="50" y2="7" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/><path d="M42 1 L56 7 L42 13" stroke="#0a0a0a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div id="connEmoji" style="font-size:32px;display:none;line-height:1"></div>
+        <div class="conn-opts">
+          <span class="copt on" data-s="arrow" title="Arrow">→</span>
+          <span class="copt" data-s="+" title="Plus">+</span>
+          <span class="copt" data-s="" title="Heart"></span>
+          <span class="copt" data-s="" title="Fire"></span>
+          <span class="copt" data-s="" title="Sparkle"></span>
+          <span class="copt" data-s="" title="Rocket"></span>
+          <span class="copt" data-s="" title="Phone"></span>
+          <span class="copt" data-s="" title="Lightning"></span>
+        </div>
+      </div>
 
-      <!-- PUSH PHONE -->
-      <div class="phone-clip">
-        <div class="phone-wrap right">
-          <div class="phone-glow"></div>
-          <div class="phone navy">
-            <div class="screen lock">
-              <div class="notch"></div>
-              <div class="status locked">
-                <span>1:34</span>
-                <div class="icons">
-                  <svg width="17" height="12" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx=".7" fill="#fff"/><rect x="5" y="3.5" width="3" height="7.5" rx=".7" fill="#fff"/><rect x="10" y="1" width="3" height="10" rx=".7" fill="#fff"/></svg>
-                </div>
-              </div>
-              <div class="push-card">
-                <div class="push-head">
-                  <div class="push-logo placeholder" id="logoEl">[LOGO]</div>
-                  <div class="push-text">
-                    <div class="push-title" id="dTitle">Your notification title</div>
-                    <div class="push-body" id="dBody">Your notification body text.</div>
-                  </div>
-                  <div class="push-now">NOW</div>
-                </div>
-                <div class="push-hero placeholder" id="heroEl">[ PUSH IMAGE ]</div>
-              </div>
-            </div>
-            <span class="btn left btn-silent"></span>
-            <span class="btn left btn-vol-up"></span>
-            <span class="btn left btn-vol-dn"></span>
-            <span class="btn right btn-power"></span>
-          </div>
-        </div>
-      </div>
+      <div class="phone-clip">
+        <div class="phone-wrap right">
+          <div class="phone-glow"></div>
+          <div class="phone navy">
+            <div class="screen lock">
+              <div class="notch"></div>
+              <div class="status locked">
+                <span>1:34</span>
+                <div class="icons">
+                  <svg width="17" height="12" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx=".7" fill="#fff"/><rect x="5" y="3.5" width="3" height="7.5" rx=".7" fill="#fff"/><rect x="10" y="1" width="3" height="10" rx=".7" fill="#fff"/></svg>
+                </div>
+              </div>
+              <div class="push-card">
+                <div class="push-head">
+                  <div class="push-logo placeholder" id="logoEl">[LOGO]</div>
+                  <div class="push-text">
+                    <div class="push-title" id="dTitle">Your notification title</div>
+                    <div class="push-body" id="dBody">Your notification body text.</div>
+                  </div>
+                  <div class="push-now">NOW</div>
+                </div>
+                <div class="push-hero placeholder" id="heroEl">[ PUSH IMAGE ]</div>
+              </div>
+            </div>
+            <span class="btn left btn-silent"></span>
+            <span class="btn left btn-vol-up"></span>
+            <span class="btn left btn-vol-dn"></span>
+            <span class="btn right btn-power"></span>
+          </div>
+        </div>
+      </div>
 
-    </div>
-  </div>
+    </div>
+  </div>
 
-  <!-- EDITOR BAR -->
-  <div class="editor">[4:03 PM]<div class="panel">
-      <div class="ptitle">:iphone: SMS</div>
-      <div class="f"><label>Short Code</label><input type="text" id="eCode" maxlength="10" value="82127"></div>
-      <div class="f"><label>Message 1 (Welcome)</label><textarea id="eSms1" rows="3"></textarea></div>
-      <div class="f"><label>Message 2 (Promo)</label><textarea id="eSms2" rows="3"></textarea></div>
-    </div>
-    <div class="panel">
-      <div class="ptitle">:bell: Push Copy</div>
-      <div class="f">
-        <label>Title</label>
-        <input type="text" id="eTitle">
-        <div class="erow">
-          <span class="ebtn" data-t="eTitle">:herb:</span><span class="ebtn" data-t="eTitle">:fire:</span><span class="ebtn" data-t="eTitle">:sparkles:</span><span class="ebtn" data-t="eTitle">:purple_heart:</span><span class="ebtn" data-t="eTitle">:tada:</span><span class="ebtn" data-t="eTitle">:zap:</span><span class="ebtn" data-t="eTitle">:cherry_blossom:</span><span class="ebtn" data-t="eTitle">:leaves:</span><span class="ebtn" data-t="eTitle">:crown:</span><span class="ebtn" data-t="eTitle">:ocean:</span><span class="ebtn" data-t="eTitle">:dizzy:</span><span class="ebtn" data-t="eTitle">:shopping_bags:</span>
-        </div>
-      </div>
-      <div class="f">
-        <label>Body (wraps at 30 chars)</label>
-        <textarea id="eBody" rows="3"></textarea>
-        <div class="erow">
-          <span class="ebtn" data-t="eBody">→</span><span class="ebtn" data-t="eBody">⮕</span><span class="ebtn" data-t="eBody">:shopping_bags:</span><span class="ebtn" data-t="eBody">:dizzy:</span><span class="ebtn" data-t="eBody">:gift:</span><span class="ebtn" data-t="eBody">:key:</span><span class="ebtn" data-t="eBody">:gem:</span><span class="ebtn" data-t="eBody">:star2:</span>
-        </div>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="ptitle">:large_blue_circle: Logo</div>
-      <div class="f"><label>Upload</label><div class="ubox">Click to upload<input type="file" accept="image/*" id="logoFile"></div></div>
-      <div class="f"><label>Size</label><div
+  <div class="editor">
+    <div class="panel">
+      <div class="ptitle"> SMS</div>
+      <div class="f"><label>Short Code</label><input type="text" id="eCode" maxlength="10" value="82127"></div>
+      <div class="f"><label>Message 1 (Welcome)</label><textarea id="eSms1" rows="3"></textarea></div>
+      <div class="f"><label>Message 2 (Promo)</label><textarea id="eSms2" rows="3"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="ptitle"> Push Copy</div>
+      <div class="f">
+        <label>Title</label>
+        <input type="text" id="eTitle">
+        <div class="erow">
+          <span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span>
+        </div>
+      </div>
+      <div class="f">
+        <label>Body (wraps at 30 chars)</label>
+        <textarea id="eBody" rows="3"></textarea>
+        <div class="erow">
+          <span class="ebtn" data-t="eBody">→</span><span class="ebtn" data-t="eBody">⮕</span><span class="ebtn" data-t="eBody"></span><span class="ebtn" data-t="eBody"></span><span class="ebtn" data-t="eBody"></span><span class="ebtn" data-t="eBody"></span><span class="ebtn" data-t="eBody"></span><span class="ebtn" data-t="eBody"></span>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ptitle"> Logo</div>
+      <div class="f"><label>Upload</label><div class="ubox">Click to upload<input type="file" accept="image/*" id="logoFile"></div></div>
+    </div>
+  </div>
+</div
+  <div class="srow"><input type="range" id="logoSize" min="28" max="72" value="52"><span id="logoSzV">52</span></div></div>
+      <div class="f"><label>Background Color</label><div class="crow"><input type="color" id="logoBgC" value="#FFFFFF"><input type="text" id="logoBgH" value="#FFFFFF" maxlength="7"></div></div>
+    </div>
+    <div class="panel">
+      <div class="ptitle">🖼 Hero Image</div>
+      <div class="f"><label>Upload</label><div class="ubox">Click to upload<input type="file" accept="image/*" id="heroFile"></div></div>
+      <div class="f"><label>Or paste URL</label><input type="text" id="heroUrl" placeholder="https://..."></div>
+      <div class="f"><label>Zoom</label><div class="srow"><input type="range" id="heroZoom" min="50" max="250" value="100"><span id="heroZmV">100%</span></div></div>
+      <div class="f" style="font-size:10px;color:#aaa;line-height:1.5">Drag the hero image to reposition</div>
+    </div>
+    <div class="panel">
+      <div class="ptitle">↔ Connector</div>
+      <div class="f"><label>Style</label></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+var COPY={fashion:{chic:{sms1:'The Archive Sale is here. Score 15% off our curated collection. Use code: STYLE15 at checkout. https://[BRANDURL].com/Afz70o Reply STOP to end.',sms2:'',pushStd:'A study in nuance',pushStdBody:'Elevated textures and subtle details for your closet.',pushName:'For you, [Name]',pushNameBody:'Shop our highly anticipated edit of premium luxury cuts.'},hype:{sms1:'New heat just dropped. Grab your favorites before they are gone. Use code: NEXT20 at checkout. https://[BRANDURL].com/xJ92pL Reply STOP to end.',sms2:'',pushStd:'The drop is live! ',pushStdBody:"Don't sleep on these. The new collection is moving fast.",pushName:'New heat for [Name]',pushNameBody:'Score the latest styles before they sell out completely.'},warm:{sms1:'We saved you a seat. Take 10% off your next find. Use code: FRIEND10 at checkout. https://[BRANDURL].com/bN41qR Reply STOP to end.',sms2:'',pushStd:'We saved your favorites',pushStdBody:'Your wishlist is ready when you are. Take a look ⮕',pushName:'Hi [Name], still thinking?',pushNameBody:"Don't miss out on your top picks. They are ready for you ⮕"},clinical:{sms1:'Engineered for fit. Explore our technical fabrics today. Use code: TECH20 at checkout. https://[BRANDURL].com/vC66tY Reply STOP to end.',sms2:'',pushStd:'Precision fit and fabric',pushStdBody:'Technical fabrics designed for a perfect fit and feel.',pushName:'[Name], your size is in',pushNameBody:'Your size is officially back in stock. Shop the restock.'},playful:{sms1:'Your closet is bored. Give it something new to wear. Use code: TREAT20 at checkout. https://[BRANDURL].com/mK82pW Reply STOP to end.',sms2:'',pushStd:"Lookin' good",pushStdBody:'Those handpicked styles belong in your weekly rotation.',pushName:'Nice taste, [Name]!',pushNameBody:'Your cart called. It is time to bring these pieces home.'},urgent:{sms1:'Final call. Items in your cart are about to sell out. Use code: HURRY15 at checkout. https://[BRANDURL].com/zX11vB Reply STOP to end.',sms2:'',pushStd:'Final call on your cart',pushStdBody:'Items are moving fast. Finalize your order before they go.',pushName:'[Name], your cart is low',pushNameBody:'Final call! Check out now before your items sell out.'},luxe:{sms1:'An invitation to our Private Sale. 20% off site-wide. Use code: ELITE20 at checkout. https://[BRANDURL].com/pL09qW Reply STOP to end.',sms2:'',pushStd:'A cut above',pushStdBody:'Experience a new level of quality with our latest edit.',pushName:'Reserved for [Name]',pushNameBody:"Elevate your look with the season's most anticipated edit."},modern:{sms1:'System Update: New arrivals just landed in the app. Use code: VERSION2 at checkout. https://[BRANDURL].com/rT33nB Reply STOP to end.',sms2:'',pushStd:'Your style, upgraded',pushStdBody:'The latest drop is live. View your personalized feed ⮕',pushName:'Optimized for [Name]',pushNameBody:'See your unique product feed and shop the new drop now ⮕'}},home:{chic:{sms1:'Elevate your space. Enjoy 15% off all minimalist essentials. Use code: CALM15 at checkout. https://[BRANDURL].com/jK22pX Reply STOP to end.',sms2:'',pushStd:'Refined living',pushStdBody:'Curated decor pieces to bring balance to every room.',pushName:'For your space, [Name]',pushNameBody:'Minimalist essentials for a calm and balanced lifestyle.'},hype:{sms1:'The restock is here! Grab the best-sellers before they vanish. Use code: ICONIC at checkout. https://[BRANDURL].com/qL99bV Reply STOP to end.',sms2:'',pushStd:'Your space, leveled up ',pushStdBody:"The restock you've been waiting for is finally live.",pushName:'[Name], big home energy',pushNameBody:'Your space deserves an upgrade. Grab the restock now!'},warm:{sms1:'A little something for your sanctuary. Enjoy 10% off. Use code: WELCOME at checkout. https://[BRANDURL].com/rX44tC Reply STOP to end.',sms2:'',pushStd:'Something for your home ',pushStdBody:'Create the perfect atmosphere with these home arrivals.',pushName:'[Name], a gift for you?',pushNameBody:'Make your sanctuary even better. See your cart today ⮕'},clinical:{sms1:'Expert craftsmanship for your everyday. Shop the collection. Use code: BUILT15 at checkout. https://[BRANDURL].com/hM51nW Reply STOP to end.',sms2:'',pushStd:'Expertly crafted',pushStdBody:'Premium construction meets modern design for your space.',pushName:'[Name], quality matters',pushNameBody:'Durable goods designed for the modern home and lifestyle.'},playful:{sms1:'Is your house feeling lonely? We can fix that. Use code: DECOR20 at checkout. https://[BRANDURL].com/zP88kL Reply STOP to end.',sms2:'',pushStd:'Your house is jealous',pushStdBody:'Complete the look of your home with these top picks.',pushName:'[Name], treat your house',pushNameBody:'That item in your cart is the missing piece to your room.'},urgent:{sms1:'Almost sold out. Secure your favorites now. Use code: NOW20 at checkout. https://[BRANDURL].com/vB33nQ Reply STOP to end.',sms2:'',pushStd:'Almost sold out',pushStdBody:'Inventory is extremely limited. Finalize your order now.',pushName:'Only 1 left for [Name]!',pushNameBody:'Stock is low. Secure your favorites before they are gone!'},luxe:{sms1:'The Premium Edit. 20% off our most exclusive pieces. Use code: GRAND20 at checkout. https://[BRANDURL].com/fD11sX Reply STOP to end.',sms2:'',pushStd:'Curated for the home',pushStdBody:'Shop our most exclusive collection of premium textures.',pushName:'Invited: [Name]',pushNameBody:'Transform your living space with these exclusive textures.'},modern:{sms1:'Design meets function. See the latest in home innovation. Use code: SMART15 at checkout. https://[BRANDURL].com/yH90pZ Reply STOP to end.',sms2:'',pushStd:'Smart home essentials',pushStdBody:'Innovative designs for the modern home are in your cart.',pushName:'Designed for [Name]',pushNameBody:'Form meets function. Your home upgrades are ready for you.'}},beauty:{chic:{sms1:'Timeless beauty, now 15% off. Use code: GLOW15 at checkout. https://[BRANDURL].com/aK11rT Reply STOP to end.',sms2:'',pushStd:'A new ritual awaits',pushStdBody:'Curated beauty essentials for your daily routine.',pushName:'For you, [Name]',pushNameBody:'Your next favorite product is waiting in your cart.'},hype:{sms1:'The drop you have been waiting for is LIVE. Use code: DROP20 at checkout. https://[BRANDURL].com/bX22sW Reply STOP to end.',sms2:'',pushStd:'New drop just hit ',pushStdBody:"It's here. The collab you have been waiting for.",pushName:'[Name], it dropped!',pushNameBody:'Your shade just restocked. Grab it before it sells out.'},warm:{sms1:'A little self-care goes a long way. Enjoy 10% off. Use code: CARE10 at checkout. https://[BRANDURL].com/cN33tV Reply STOP to end.',sms2:'',pushStd:'You deserve this ',pushStdBody:'A little something to make your routine feel special.',pushName:'Just for you, [Name]',pushNameBody:'Your favorites are waiting. Treat yourself today ⮕'},clinical:{sms1:'Clinically proven. Now on sale. Use code: PROVEN15 at checkout. https://[BRANDURL].com/dM44uX Reply STOP to end.',sms2:'',pushStd:'Science-backed beauty',pushStdBody:'Formulated for real results. Your skin will thank you.',pushName:'[Name], results incoming',pushNameBody:'Your personalized routine is ready. Start today.'},playful:{sms1:'Your skin is bored. Time for a glow-up. Use code: GLOWIN20 at checkout. https://[BRANDURL].com/eL55vY Reply STOP to end.',sms2:'',pushStd:'Glow different ',pushStdBody:'These picks are giving main character energy. Shop now.',pushName:'[Name], glow up time!',pushNameBody:'Your cart is full of good things. Time to check out.'},urgent:{sms1:'Last chance. Your favorites are almost gone. Use code: LAST15 at checkout. https://[BRANDURL].com/fK66wZ Reply STOP to end.',sms2:'',pushStd:'Almost gone',pushStdBody:'Low stock alert on your favorite products. Act fast.',pushName:'[Name], almost gone!',pushNameBody:'Your saved items are selling fast. Check out now.'},luxe:{sms1:'Exclusive access to our prestige collection. Use code: PRESTIGE20 at checkout. https://[BRANDURL].com/gJ77xA Reply STOP to end.',sms2:'',pushStd:'Luxury, redefined',pushStdBody:'The finest formulas curated for a discerning routine.',pushName:'Reserved for [Name]',pushNameBody:'Your exclusive edit is ready. Elevate your ritual.'},modern:{sms1:'Smarter beauty is here. Use code: SMART10 at checkout. https://[BRANDURL].com/hI88yB Reply STOP to end.',sms2:'',pushStd:'Beauty, upgraded ',pushStdBody:'AI-matched products for your unique skin profile.',pushName:'Matched for [Name]',pushNameBody:'Your personalized beauty feed is live. Shop now ⮕'}},food:{chic:{sms1:'Curated flavors, 15% off. Use code: TASTE15 at checkout. https://[BRANDURL].com/iH99zC Reply STOP to end.',sms2:'',pushStd:'A taste of something special',pushStdBody:'Artisan selections curated for the refined palate.',pushName:'Crafted for you, [Name]',pushNameBody:'Your next favorite flavor is in your cart today.'},hype:{sms1:'NEW flavors just dropped. Get them before they sell out. Use code: FLAVOR20 at checkout. https://[BRANDURL].com/jG00aD Reply STOP to end.',sms2:'',pushStd:'New flavors just dropped ',pushStdBody:'The collab everyone is talking about is live now.',pushName:'[Name], new drop!',pushNameBody:'Your flavor is live. Grab it before it sells out.'},warm:{sms1:'Something good is waiting for you. Enjoy 10% off. Use code: YUMMY10 at checkout. https://[BRANDURL].com/kF11bE Reply STOP to end.',sms2:'',pushStd:'Made with care ',pushStdBody:'Good ingredients, good vibes. Your order is ready.',pushName:'Saved for you, [Name]',pushNameBody:'Your favorites are back. Order today and enjoy.'},clinical:{sms1:'Nutrition-forward. Now 15% off. Use code: FUEL15 at checkout. https://[BRANDURL].com/lE22cF Reply STOP to end.',sms2:'',pushStd:'Fuel your best self',pushStdBody:'Nutritionist-approved picks for your wellness goals.',pushName:'[Name], optimized for you',pushNameBody:'Your macro-friendly picks are ready to order.'},playful:{sms1:'Your taste buds are bored. Fix that. Use code: SNACK20 at checkout. https://[BRANDURL].com/mD33dG Reply STOP to end.',sms2:'',pushStd:'Snack attack incoming ',pushStdBody:'These flavors are dangerously good. You have been warned.',pushName:'[Name], snack time!',pushNameBody:'Your cart is stacked with the good stuff. Check out.'},urgent:{sms1:'Selling fast. Grab yours before it is gone. Use code: HURRY15 at checkout. https://[BRANDURL].com/nC44eH Reply STOP to end.',sms2:'',pushStd:'Going fast',pushStdBody:'Limited stock on your favorite items. Order now.',pushName:'[Name], almost gone!',pushNameBody:'Your saved items are low in stock. Order now.'},luxe:{sms1:'Premium ingredients, exclusive offer. Use code: LUXE20 at checkout. https://[BRANDURL].com/oB55fI Reply STOP to end.',sms2:'',pushStd:'Indulge a little',pushStdBody:'Premium small-batch products curated for the connoisseur.',pushName:'Exclusively for [Name]',pushNameBody:'Your premium selection is ready. Treat yourself.'},modern:{sms1:'Smarter eating starts here. Use code: SMART15 at checkout. https://[BRANDURL].com/pA66gJ Reply STOP to end.',sms2:'',pushStd:'Eat smarter ',pushStdBody:'Your personalized nutrition feed is live. Shop now ⮕',pushName:'Curated for [Name]',pushNameBody:'AI-matched nutrition picks for your goals are ready ⮕'}},health:{chic:{sms1:'Wellness essentials, 15% off. Use code: WELL15 at checkout. https://[BRANDURL].com/qZ77hK Reply STOP to end.',sms2:'',pushStd:'Elevate your wellness',pushStdBody:'Refined essentials curated for your daily ritual.',pushName:'For you, [Name]',pushNameBody:'Your curated wellness edit is ready. Start today.'},hype:{sms1:'New wellness drops just landed. Use code: ENERGY20 at checkout. https://[BRANDURL].com/rY88iL Reply STOP to end.',sms2:'',pushStd:'New drop is live ',pushStdBody:'The supplement drop everyone has been waiting for.',pushName:'[Name], it is live!',pushNameBody:'Your wellness restock is here. Grab it now.'},warm:{sms1:'Take care of yourself. Enjoy 10% off. Use code: SELFCARE10 at checkout. https://[BRANDURL].com/sX99jM Reply STOP to end.',sms2:'',pushStd:'You deserve to feel good ',pushStdBody:'Small habits, big results. Your order is waiting.',pushName:'Thinking of you, [Name]',pushNameBody:'Your wellness favorites are ready when you are ⮕'},clinical:{sms1:'Clinically formulated for results. Use code: RESULTS15 at checkout. https://[BRANDURL].com/tW00kN Reply STOP to end.',sms2:'',pushStd:'Results-driven wellness',pushStdBody:'Evidence-based formulas for your health goals.',pushName:'[Name], formulated for you',pushNameBody:'Your clinical-grade picks are ready to order now.'},playful:{sms1:'Your body deserves better snacks. Use code: HEALTHY20 at checkout. https://[BRANDURL].com/uV11lO Reply STOP to end.',sms2:'',pushStd:'Healthy never looked so fun ',pushStdBody:'Good-for-you products that actually taste amazing.',pushName:'[Name], treat yo self!',pushNameBody:'Your healthy indulgences are in your cart. Check out.'},urgent:{sms1:'Stock is running low. Reorder now. Use code: RESTOCK15 at checkout. https://[BRANDURL].com/vU22mP Reply STOP to end.',sms2:'',pushStd:'Running low?',pushStdBody:'Do not break your streak. Reorder before you run out.',pushName:'[Name], time to reorder',pushNameBody:'Your supply is running low. Restock now to stay on track.'},luxe:{sms1:'Premium wellness, exclusive pricing. Use code: PREMIUM20 at checkout. https://[BRANDURL].com/wT33nQ Reply STOP to end.',sms2:'',pushStd:'Premium wellness awaits',pushStdBody:'The finest wellness products curated for optimal health.',pushName:'Reserved for [Name]',pushNameBody:'Your premium wellness edit is ready. Elevate your ritual.'},modern:{sms1:'Track, optimize, perform. Use code: OPTIMIZE15 at checkout. https://[BRANDURL].com/xS44oR Reply STOP to end.',sms2:'',pushStd:'Optimize your routine ',pushStdBody:'Smart wellness picks based on your unique health data.',pushName:'Optimized for [Name]',pushNameBody:'Your personalized health feed is live. Shop now ⮕'}}};
+
+var brandUrl='',brandName='',prospectName='',selVibe='',selInd='';
+var heroOffX=0,heroOffY=0,heroZoom=1,heroNatW=0,heroNatH=0,heroDrag=false,heroDragX=0,heroDragY=0;
+
+// VIBE BUTTONS
+document.querySelectorAll('.vb').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.vb').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');selVibe=b.dataset.v;
+  });
+});
+
+// GENERATE
+document.getElementById('genBtn').addEventListener('click',function(){
+  var url=document.getElementById('sUrl').value.trim();
+  var ind=document.getElementById('sInd').value;
+  var name=document.getElementById('sName').value.trim();
+  if(!url){alert('Please enter the brand URL.');return;}
+  if(!ind){alert('Please select an industry.');return;}
+  if(!selVibe){alert('Please select a brand vibe.');return;}
+  brandUrl=url.replace(/^https?:\/\//,'').replace(/\/$/,'');
+  brandName=brandUrl.split('.')[0];
+  brandName=brandName.charAt(0).toUpperCase()+brandName.slice(1);
+  prospectName=name;selInd=ind;
+  populateCopy();
+  document.getElementById('setup').style.display='none';
+  document.getElementById('app').style.display='flex';
+  document.getElementById('toolTitle').textContent=brandName+' — SMS → Push Mockup';
+});
+
+function fill(s){return(s||'').replace(/\[BRANDURL\]/g,brandUrl).replace(/\[Name\]/g,prospectName);}
+
+function wrapAt30(text){
+  var words=text.split(' '),lines=[],cur='';
+  for(var i=0;i<words.length;i++){
+    var w=words[i];
+    if(!cur){cur=w;}
+    else if(cur.length+1+w.length<=30){cur+=' '+w;}
+    else{lines.push(cur);cur=w;}
+  }
+  if(cur)lines.push(cur);
+  return lines.join('\n');
+}
+
+function populateCopy(){
+  var v=(COPY[selInd]||{})[selVibe];
+  if(!v)return;
+  var hasPerson=prospectName.length>0;
+  var s1=fill(v.sms1);
+  var s2=fill(v.sms2||(brandName+': Your '+brandName+' app is ready. https://'+brandUrl+' Reply STOP to end.'));
+  var pt=fill(hasPerson?v.pushName:v.pushStd);
+  var pb=fill(hasPerson?v.pushNameBody:v.pushStdBody);
+  document.getElementById('eSms1').value=s1;
+  document.getElementById('eSms2').value=s2;
+  document.getElementById('eTitle').value=pt;
+  document.getElementById('eBody').value=pb;
+  document.getElementById('dSms1').textContent=s1;
+  document.getElementById('dSms2').textContent=s2;
+  renderTitle(pt);renderBody(pb);
+}
+
+function renderTitle(v){document.getElementById('dTitle').textContent=v||'Your notification title';}
+function renderBody(v){document.getElementById('dBody').textContent=wrapAt30(v||'Your notification body.');}
+
+// SMS EDITORS
+document.getElementById('eCode').addEventListener('input',function(){document.getElementById('dShortcode').textContent=this.value;});
+document.getElementById('eSms1').addEventListener('input',function(){document.getElementById('dSms1').textContent=this.value;});
+document.getElementById('eSms2').addEventListener('input',function(){document.getElementById('dSms2').textContent=this.value;});
+document.getElementById('eTitle').addEventListener('input',function(){renderTitle(this.value);});
+document.getElementById('eBody').addEventListener('input',function(){renderBody(this.value);});
+
+// EMOJI BUTTONS
+document.querySelectorAll('.ebtn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var t=document.getElementById(btn.dataset.t);if(!t)return;
+    var p=t.selectionStart||t.value.length;
+    t.value=t.value.slice(0,p)+btn.textContent+t.value.slice(p);
+    t.dispatchEvent(new Event('input'));t.focus();
+  });
+});
+
+// CONNECTOR
+document.querySelectorAll('.copt').forEach(function(o){
+  o.addEventListener('click',function(){
+    document.querySelectorAll('.copt').forEach(function(x){x.classList.remove('on')});
+    o.classList.add('on');
+    var s=o.dataset.s;
+    var svg=document.getElementById('arrowSvg');
+    var em=document.getElementById('connEmoji');
+    if(s==='arrow'){svg.style.display='';em.style.display='none';}
+    else{svg.style.display='none';em.style.display='';em.textContent=s;}
+  });
+});
+
+// LOGO
+document.getElementById('logoFile').addEventListener('change',function(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();r.onload=function(ev){
+    var el=document.getElementById('logoEl');
+    el.className='push-logo';
+    el.innerHTML='<img src="'+ev.target.result+'" alt="">';
+  };r.readAsDataURL(f);
+});
+document.getElementById('logoSize').addEventListener('input',function(){
+  document.getElementById('logoSzV').textContent=this.value;
+  var el=document.getElementById('logoEl');
+  el.style.width=this.value+'px';el.style.height=this.value+'px';
+});
+document.getElementById('logoBgC').addEventListener('input',function(){
+  document.getElementById('logoBgH').value=this.value;
+  document.getElementById('logoEl').style.background=this.value;
+});
+document.getElementById('logoBgH').addEventListener('input',function(){
+  if(/^#[0-9a-fA-F]{6}$/.test(this.value)){
+    document.getElementById('logoBgC').value=this.value;
+    document.getElementById('logoEl').style.background=this.value;
+  }
+});
+
+// HERO
+function posHero(){
+  var el=document.getElementById('heroEl');
+  var img=el.querySelector('img');if(!img)return;
+  var ww=el.offsetWidth,wh=el.offsetHeight;
+  var base=Math.max(ww/heroNatW,wh/heroNatH);
+  var sc=base*heroZoom;
+  var sw=heroNatW*sc,sh=heroNatH*sc;
+  var cx=(ww-sw)/2+heroOffX,cy=(wh-sh)/2+heroOffY;
+  img.style.width=sw+'px';img.style.height=sh+'px';
+  img.style.left=cx+'px';img.style.top=cy+'px';
+}
+function loadHero(src){
+  var el=document.getElementById('heroEl');
+  el.className='push-hero';el.innerHTML='';
+  var img=document.createElement('img');
+  img.style.position='absolute';img.style.pointerEvents='none';img.style.userSelect='none';
+  img.onload=function(){heroNatW=img.naturalWidth;heroNatH=img.naturalHeight;heroOffX=0;heroOffY=0;heroZoom=1;document.getElementById('heroZoom').value=100;document.getElementById('heroZmV').textContent='100%';posHero();};
+  img.onerror=function(){el.className='push-hero placeholder';el.innerHTML='[ PUSH IMAGE ]';};
+  img.src=src;el.appendChild(img);
+  el.addEventListener('mousedown',startDrag);
+  el.addEventListener('touchstart',startDragT,{passive:false});
+}
+function startDrag(e){heroDrag=true;heroDragX=e.clientX;heroDragY=e.clientY;document.getElementById('heroEl').classList.add('dragging');e.preventDefault();}
+function startDragT(e){heroDrag=true;heroDragX=e.touches[0].clientX;heroDragY=e.touches[0].clientY;e.preventDefault();}
+document.addEventListener('mousemove',function(e){if(!heroDrag)return;heroOffX+=(e.clientX-heroDragX);heroOffY+=(e.clientY-heroDragY);heroDragX=e.clientX;heroDragY=e.clientY;posHero();});
+document.addEventListener('mouseup',function(){heroDrag=false;var el=document.getElementById('heroEl');if(el)el.classList.remove('dragging');});
+document.addEventListener('touchmove',function(e){if(!heroDrag)return;heroOffX+=(e.touches[0].clientX-heroDragX);heroOffY+=(e.touches[0].clientY-heroDragY);heroDragX=e.touches[0].clientX;heroDragY=e.touches[0].clientY;posHero();},{passive:false});
+document.addEventListener('touchend',function(){heroDrag=false;});
+document.getElementById('heroFile').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){loadHero(ev.target.result);};r.readAsDataURL(f);});
+document.getElementById('heroUrl').addEventListener('input',function(){if(this.value.trim())loadHero(this.value.trim());});
+document.getElementById('heroZoom').addEventListener('input',function(){heroZoom=parseInt(this.value)/100;document.getElementById('heroZmV').textContent=this.value+'%';posHero();});
+
+// RESET
+document.getElementById('resetBtn').addEventListener('click',function(){
+  document.getElementById('app').style.display='none';
+  document.getElementById('setup').style.display='flex';
+  selVibe='';document.querySelectorAll('.vb').forEach(function(b){b.classList.remove('on')});
+});
+
+// DOWNLOAD
+document.getElementById('dlBtn').addEventListener('click',function(){
+  var btn=this;btn.textContent='Generating...';btn.disabled=true;
+  html2canvas(document.getElementById('mockupCanvas'),{scale:2,useCORS:true,allowTaint:true,backgroundColor:'#f5f5f5',logging:false}).then(function(c){
+    var a=document.createElement('a');
+    a.download=(brandName||'mockup')+'-push-mockup.png';
+    a.href=c.toDataURL('image/png');a.click();
+    btn.textContent=' Download PNG';btn.disabled=false;
+  }).catch(function(){
+    alert('Download failed. Try uploading images as files instead of using URLs.');
+    btn.textContent=' Download PNG';btn.disabled=false;
+  });
+});
+</script>
+</body>
+</html>
