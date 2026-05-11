@@ -3,272 +3,350 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SMS Push Mockup Sales</title>
+<title>SMS → Push Mockup Generator</title>
 <style>
-  :root { --phone-w: 360px; --phone-h: 720px; --bezel: 6px; }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { min-height: 100vh; background: #f0f0f0; font-family: -apple-system, 'SF Pro Text', Inter, sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100vh;background:#f0f0f0;font-family:-apple-system,'SF Pro Text',Inter,sans-serif;color:#111}
 
-  /* Layout */
-  .app { display: flex; min-height: 100vh; }
-  .sidebar { width: 340px; min-width: 340px; background: #fff; border-right: 1px solid #e0e0e0; padding: 24px 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
-  .preview-area { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; gap: 24px; }
+/* SETUP SCREEN */
+.setup-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.setup-card{background:#fff;border-radius:20px;padding:40px;max-width:520px;width:100%;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.setup-card h1{font-size:22px;font-weight:800;margin-bottom:6px}
+.setup-card p{font-size:13px;color:#888;margin-bottom:28px}
+.setup-field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.setup-field label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#555}
+.setup-field input,.setup-field select{padding:10px 13px;border:1.5px solid #e0e0e0;border-radius:9px;font-size:14px;font-family:inherit;outline:none;transition:border-color .15s}
+.setup-field input:focus,.setup-field select:focus{border-color:#6c63ff}
+.setup-field small{font-size:11px;color:#aaa}
+.vibe-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vibe-btn{padding:10px 8px;border:1.5px solid #e0e0e0;border-radius:9px;background:#fff;font-size:12px;font-weight:600;cursor:pointer;text-align:center;transition:all .15s;color:#444}
+.vibe-btn:hover{border-color:#6c63ff;color:#6c63ff}
+.vibe-btn.selected{border-color:#6c63ff;background:#f0eeff;color:#6c63ff}
+.setup-btn{width:100%;padding:14px;background:linear-gradient(135deg,#6c63ff,#a855f7);color:#fff;font-size:15px;font-weight:700;border:none;border-radius:11px;cursor:pointer;margin-top:8px;transition:opacity .15s}
+.setup-btn:hover{opacity:.88}
 
-  /* Sidebar UI */
-  h1 { font-size: 17px; font-weight: 700; color: #111; letter-spacing: -0.3px; }
-  h1 span { display: block; font-size: 11px; font-weight: 500; color: #888; margin-top: 2px; letter-spacing: 0; }
-  .field-group { display: flex; flex-direction: column; gap: 5px; }
-  label { font-size: 12px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.4px; }
-  input[type=text], textarea { width: 100%; padding: 9px 11px; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; font-family: inherit; color: #111; outline: none; transition: border-color 0.15s; resize: vertical; }
-  input[type=text]:focus, textarea:focus { border-color: #6c63ff; }
-  textarea { min-height: 60px; }
+/* MAIN APP */
+.main-app{display:none;flex-direction:column;min-height:100vh}
+.toolbar{background:#fff;border-bottom:1px solid #e8e8e8;padding:12px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.toolbar-title{font-size:14px;font-weight:700;margin-right:auto}
+.tb-btn{padding:7px 14px;border:1.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
+.tb-btn:hover{border-color:#6c63ff;color:#6c63ff}
+.tb-btn.primary{background:linear-gradient(135deg,#6c63ff,#a855f7);color:#fff;border-color:transparent}
+.tb-btn.primary:hover{opacity:.88}
 
-  .upload-box { border: 1.5px dashed #ccc; border-radius: 10px; padding: 14px; text-align: center; cursor: pointer; color: #888; font-size: 12px; transition: border-color 0.15s, background 0.15s; position: relative; }
-  .upload-box:hover { border-color: #6c63ff; background: #f7f5ff; }
-  .upload-box input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-  .upload-box .preview-thumb { width: 100%; height: 80px; object-fit: cover; border-radius: 6px; margin-top: 8px; display: block; }
-  .upload-box .preview-thumb.logo-thumb { width: 52px; height: 52px; border-radius: 10px; margin: 8px auto 0; }
+.canvas-area{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px;gap:0;overflow:auto}
 
-  .color-row { display: flex; align-items: center; gap: 8px; }
-  .color-row input[type=color] { width: 36px; height: 36px; border: 1px solid #ddd; border-radius: 6px; padding: 2px; cursor: pointer; }
-  .color-row input[type=text] { flex: 1; }
+/* PHONES */
+.phone-scene{display:flex;align-items:flex-start;gap:32px}
+.phone-col{display:flex;flex-direction:column;align-items:center;gap:12px}
+.phone-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#999}
+.phone-wrap{position:relative;width:270px;height:540px;/* 75% of 720 */overflow:hidden}
+.phone-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:#000;z-index:20}
+.phone-glow{position:absolute;inset:0;border-radius:44px;box-shadow:0 0 8px 4px rgba(250,195,152,.9),0 0 16px 8px rgba(240,75,130,.6),0 0 24px 12px rgba(74,71,255,.3);pointer-events:none;z-index:15}
+.phone-frame{position:relative;width:270px;height:720px;border-radius:50px;background:#0c1226;box-shadow:0 0 0 1px #1d2540,inset 0 0 0 1px rgba(255,255,255,.07),inset 0 0 0 6px #0c1226,inset 0 0 0 7px #1d2540}
+.phone-frame.sms-frame{background:#1c1c1e}
+.screen{position:absolute;top:6px;left:6px;right:6px;bottom:6px;border-radius:44px;overflow:hidden}
 
-  .divider { border: none; border-top: 1px solid #eee; }
+.btn-hw{position:absolute;background:linear-gradient(180deg,#1a1a1c 0%,#545458 18%,#8a8a90 50%,#545458 82%,#1a1a1c 100%);border-radius:1.5px;z-index:25}
+.btn-hw.l{left:-2.5px}.btn-hw.r{right:-2.5px}
+.bs{top:88px;width:3.5px;height:24px}
+.bv1{top:124px;width:3.5px;height:56px}
+.bv2{top:188px;width:3.5px;height:56px}
+.bpw{top:152px;width:3.5px;height:90px}
 
-  .btn-download { width: 100%; padding: 12px; background: linear-gradient(135deg, #6c63ff, #a855f7); color: #fff; font-size: 14px; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; letter-spacing: -0.2px; margin-top: 4px; transition: opacity 0.15s; }
-  .btn-download:hover { opacity: 0.88; }
+/* SMS SCREEN */
+.sms-screen{width:100%;height:100%;background:#1c1c1e;display:flex;flex-direction:column;font-size:14px}
+.sms-status{display:flex;justify-content:space-between;align-items:center;padding:12px 18px 0;color:rgba(255,255,255,.5);font-size:13px;font-weight:600;flex-shrink:0}
+.sms-contact{display:flex;flex-direction:column;align-items:center;padding:10px 0 8px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.sms-avatar{width:44px;height:44px;border-radius:50%;background:#4a4a4e;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
+.sms-avatar svg{width:28px;height:28px;fill:rgba(255,255,255,.4)}
+.sms-number{color:#fff;font-size:13px;font-weight:600}
+.sms-number span{color:#0a84ff;font-size:11px}
+.sms-meta{color:rgba(255,255,255,.4);font-size:10px;margin-top:1px}
+.sms-messages{flex:1;overflow:hidden;padding:10px 10px 0;display:flex;flex-direction:column;gap:6px}
+.sms-date{text-align:center;color:rgba(255,255,255,.3);font-size:10px;margin:4px 0}
+.sms-bubble{background:#3a3a3c;color:#fff;border-radius:16px 16px 16px 4px;padding:9px 12px;font-size:11px;line-height:1.45;max-width:90%;word-break:break-word}
+.sms-bubble a{color:#0a84ff}
+.sms-footer{padding:8px 12px 10px;flex-shrink:0}
+.sms-spam-warning{color:rgba(255,255,255,.3);font-size:9px;text-align:center;line-height:1.4;margin-bottom:5px}
+.sms-spam-btn{display:block;width:100%;text-align:center;color:#0a84ff;font-size:11px;background:#2c2c2e;border-radius:10px;padding:7px;cursor:default}
 
-  /* Phone — exact spec from originals */
-  .phone-wrap { position: relative; width: var(--phone-w); height: var(--phone-h); }
-  .phone-glow { position: absolute; inset: 0; border-radius: 44px; box-shadow: 0 0 8px 4px rgba(250,195,152,0.9), 0 0 16px 8px rgba(240,75,130,0.6), 0 0 24px 12px rgba(74,71,255,0.3); pointer-events: none; }
-  .phone { position: relative; width: 100%; height: 100%; border-radius: 50px; background: #0c1226; box-shadow: 0 0 0 1px #1d2540, inset 0 0 0 1px rgba(255,255,255,0.07), inset 0 0 0 6px #0c1226, inset 0 0 0 7px #1d2540; }
+/* PUSH SCREEN */
+.push-screen{width:100%;height:100%;background:linear-gradient(108deg,transparent 22%,rgba(255,255,255,.10) 36%,rgba(255,255,255,.03) 44%,rgba(255,255,255,.09) 54%,transparent 70%),linear-gradient(140deg,transparent 50%,rgba(255,255,255,.06) 62%,transparent 78%),radial-gradient(ellipse at 50% 110%,#1c2a5c 0%,#0e1840 55%,#060a26 100%);position:relative}
+.push-notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:90px;height:26px;background:#000;border-radius:18px;z-index:6}
+.push-status{position:absolute;top:0;left:0;right:0;height:46px;display:flex;justify-content:space-between;align-items:center;padding:14px 22px 0;color:rgba(255,255,255,.42);filter:blur(.7px);font-size:14px;font-weight:600;z-index:4}
+.push-card{position:absolute;top:52px;left:10px;right:10px;border-radius:18px;overflow:hidden;z-index:5}
+.push-head{background:linear-gradient(180deg,rgba(110,115,140,.55) 0%,rgba(80,85,110,.52) 100%);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:10px;gap:8px}
+.push-logo-wrap{flex-shrink:0;overflow:hidden;border-radius:10px;display:flex;align-items:center;justify-content:center;transition:width .2s,height .2s}
+.push-logo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.push-logo-placeholder{width:100%;height:100%;background:rgba(255,255,255,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);font-size:9px;text-align:center}
+.push-text{flex:1;min-width:0}
+.push-title-display{color:#fff;font-size:12px;font-weight:700;line-height:1.2;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.push-body-display{color:#e5e5ea;font-size:11px;line-height:1.35;margin-top:2px;letter-spacing:-.01em;word-break:break-word}
+.push-now{color:#c7c7cc;font-size:10px;font-weight:500;margin-left:4px;flex-shrink:0;align-self:flex-start;margin-top:1px}
+.push-hero-wrap{width:100%;height:200px;overflow:hidden;position:relative;background:#111;cursor:grab}
+.push-hero-wrap.dragging{cursor:grabbing}
 
-  .screen { position: absolute; inset: var(--bezel); border-radius: 44px; overflow: hidden; font-size: 16px; background: linear-gradient(108deg, transparent 22%, rgba(255,255,255,0.10) 36%, rgba(255,255,255,0.03) 44%, rgba(255,255,255,0.09) 54%, transparent 70%), linear-gradient(140deg, transparent 50%, rgba(255,255,255,0.06) 62%, transparent 78%), linear-gradient(96deg, transparent 65%, rgba(255,255,255,0.05) 80%, transparent 95%), radial-gradient(ellipse at 50% 110%, #1c2a5c 0%, #0e1840 55%, #060a26 100%); }
-  .notch { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 110px; height: 30px; background: #000; border-radius: 18px; z-index: 6; }
-  .status { position: absolute; top: 0; left: 0; right: 0; height: 50px; display: flex; justify-content: space-between; align-items: center; padding: 16px 28px 0 28px; color: rgba(255,255,255,0.42); filter: blur(0.7px); font-size: 16px; font-weight: 600; z-index: 4; }
-  .push-card { position: absolute; top: 60px; left: 12px; right: 12px; border-radius: 18px; overflow: hidden; color: #fff; z-index: 5; }
-  .push-head { background: linear-gradient(180deg, rgba(110,115,140,0.55) 0%, rgba(80,85,110,0.52) 100%); backdrop-filter: blur(28px) saturate(1.6); -webkit-backdrop-filter: blur(28px) saturate(1.6); border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; padding: 12px; gap: 10px; }
-  .push-logo { width: 52px; height: 52px; border-radius: 11px; flex-shrink: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-  .push-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .push-text { flex: 1; min-width: 0; }
-  .push-title { color: #fff; font-size: 13.5px; font-weight: 700; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.01em; }
-  .push-body { color: #e5e5ea; font-size: 13px; line-height: 1.35; margin-top: 3px; letter-spacing: -0.01em; word-spacing: -0.5px; }
-  .push-now { color: #c7c7cc; font-size: 11px; font-weight: 500; margin-left: 4px; flex-shrink: 0; align-self: flex-start; margin-top: 1px; }
-  .push-hero { width: 100%; height: 380px; overflow: hidden; }
-  .push-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .push-hero-placeholder { width: 100%; height: 380px; background: linear-gradient(135deg, #1c2a5c, #0e1840); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.2); font-size: 13px; }
-  .btn { position: absolute; background: linear-gradient(180deg, #1a1a1c 0%, #545458 18%, #8a8a90 50%, #545458 82%, #1a1a1c 100%); border-radius: 1.5px; z-index: 7; }
-  .btn.left { left: -2.5px; }
-  .btn.right { right: -2.5px; }
-  .btn-silent { top: 88px; width: 3.5px; height: 24px; }
-  .btn-vol-up { top: 124px; width: 3.5px; height: 56px; }
-  .btn-vol-dn { top: 188px; width: 3.5px; height: 56px; }
-  .btn-power { top: 152px; width: 3.5px; height: 90px; }
+.push-hero-img{position:absolute;transform-origin:center center;user-select:none;pointer-events:none}
+.push-hero-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-size:11px;background:linear-gradient(135deg,#1c2a5c,#0e1840)}
 
-  /* Export note */
-  .export-note { font-size: 11px; color: #999; text-align: center; max-width: 340px; line-height: 1.5; }
+/* CONNECTOR */
+.connector{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:0 8px;margin-top:-20px}
+.connector-symbol{font-size:28px;cursor:pointer;user-select:none;transition:transform .15s}
+.connector-symbol:hover{transform:scale(1.2)}
+.connector-options{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.conn-opt{font-size:18px;cursor:pointer;opacity:.4;transition:opacity .15s;padding:4px}
+.conn-opt:hover,.conn-opt.active{opacity:1}
+
+/* SIDEBAR PANELS */
+.editor-bar{background:#fff;border-top:1px solid #e8e8e8;padding:16px 20px;display:flex;gap:16px;overflow-x:auto;align-items:flex-start}
+.panel{min-width:220px;display:flex;flex-direction:column;gap:10px}
+.panel-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#999;padding-bottom:4px;border-bottom:1px solid #f0f0f0}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.3px}
+.field input[type=text],.field textarea,.field select{padding:7px 9px;border:1px solid #e0e0e0;border-radius:7px;font-size:12px;font-family:inherit;outline:none;transition:border-color .15s;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#6c63ff}
+.field textarea{min-height:48px}
+.upload-box{border:1.5px dashed #ddd;border-radius:8px;padding:10px;text-align:center;cursor:pointer;color:#aaa;font-size:11px;position:relative;transition:border-color .15s}
+.upload-box:hover{border-color:#6c63ff}
+.upload-box input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-thumb{width:40px;height:40px;object-fit:cover;border-radius:6px;margin:4px auto 0;display:block}
+.slider-row{display:flex;align-items:center;gap:8px}
+.slider-row input[type=range]{flex:1;accent-color:#6c63ff}
+.slider-row span{font-size:11px;color:#888;min-width:28px;text-align:right}
+.color-row{display:flex;align-items:center;gap:6px}
+.color-row input[type=color]{width:30px;height:30px;border:1px solid #ddd;border-radius:6px;padding:1px;cursor:pointer}
+.color-row input[type=text]{flex:1;padding:6px 8px;border:1px solid #e0e0e0;border-radius:7px;font-size:12px;outline:none}
+.emoji-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+.emoji-btn{font-size:16px;cursor:pointer;padding:2px 4px;border-radius:4px;transition:background .1s}
+.emoji-btn:hover{background:#f0eeff}
+
+/* UTIL */
+.hidden{display:none!important}
 </style>
 </head>
 <body>
 
-<div class="app">
+<div class="setup-screen" id="setupScreen">
+  <div class="setup-card">
+    <h1> Push Mockup Generator</h1>
+    <p>Fill in the details below and we'll auto-populate your mockup with on-brand copy.</p>
 
-  <div class="sidebar">
-    <div>
-      <h1>SMS Push Mockup Sales <span>Build a rich push notification mockup</span></h1>
+    <div class="setup-field">
+      <label>Brand Website URL</label>
+      <input type="text" id="setup-url" placeholder="e.g. aembr.co" autocomplete="off">
+      <small>Used to auto-fill links in SMS copy</small>
     </div>
 
-    <hr class="divider">
-
-    <div class="field-group">
-      <label>App Logo</label>
-      <div class="upload-box" id="logo-box">
-        <div id="logo-label">Click to upload logo (square, PNG/JPG)</div>
-        <img id="logo-preview" class="preview-thumb logo-thumb" style="display:none" alt="logo">
-        <input type="file" accept="image/*" id="logo-file">
-      </div>
-      <div class="color-row" style="margin-top:6px">
-        <input type="color" id="logo-bg-color" value="#FFFFFF" title="Logo background color">
-        <input type="text" id="logo-bg-hex" value="#FFFFFF" placeholder="Logo bg color" maxlength="7">
-      </div>
+    <div class="setup-field">
+      <label>Industry</label>
+      <select id="setup-industry">
+        <option value="">Select industry...</option>
+        <option value="fashion">Fashion &amp; Apparel</option>
+        <option value="home">Home &amp; Hobby</option>
+        <option value="beauty">Beauty &amp; Cosmetics</option>
+        <option value="food">Food &amp; Beverage</option>
+        <option value="health">Health &amp; Wellness</option>
+      </select>
     </div>
 
-    <div class="field-group">
-      <label>Notification Title</label>
-      <input type="text" id="push-title" placeholder="e.g. Something's in the air, Kori 🍃" value="">
-    </div>
-
-    <div class="field-group">
-      <label>Notification Body</label>
-      <textarea id="push-body" placeholder="e.g. Made to be lit without a second thought. Shop Now →"></textarea>
-    </div>
-
-    <div class="field-group">
-      <label>Hero Image</label>
-      <div class="upload-box" id="hero-box">
-        <div id="hero-label">Click to upload hero image (wide, JPG/PNG)</div>
-        <img id="hero-preview" class="preview-thumb" style="display:none" alt="hero">
-        <input type="file" accept="image/*" id="hero-file">
-      </div>
-      <div style="margin-top:6px">
-        <label style="text-transform:none; font-size:11px; color:#aaa; font-weight:400">Or paste an image URL</label>
-        <input type="text" id="hero-url" placeholder="https://..." style="margin-top:4px">
+    <div class="setup-field">
+      <label>Brand Vibe</label>
+      <div class="vibe-grid" id="vibeGrid">
+        <button class="vibe-btn" data-vibe="chic">✦ Chic + Reserved</button>
+        <button class="vibe-btn" data-vibe="hype"> Hype + Bold</button>
+        <button class="vibe-btn" data-vibe="warm"> Warm + Personal</button>
+        <button class="vibe-btn" data-vibe="clinical"> Clinical + Expert</button>
+        <button class="vibe-btn" data-vibe="playful"> Playful + Witty</button>
+        <button class="vibe-btn" data-vibe="urgent"> Urgent + Direct</button>
+        <button class="vibe-btn" data-vibe="luxe"> Luxe + Elegant</button>
+        <button class="vibe-btn" data-vibe="modern"> Modern + Techy</button>
       </div>
     </div>
 
-    <hr class="divider">
+    <div class="setup-field">
+      <label>Prospect's First Name <span style="color:#aaa;font-weight:400">(optional)</span></label>
+      <input type="text" id="setup-name" placeholder="e.g. Kori">
+    </div>
 
-    <button class="btn-download" id="download-btn"> Download PNG</button>
+    <button class="setup-btn" id="setupBtn">Generate Mockup →</button>
   </div>
-
-  <div class="preview-area">
-    <div class="phone-wrap" id="phone-wrap">
-      <div class="phone-glow"></div>
-      <div class="phone">
-        <div class="screen">
-          <div class="notch"></div>
-          <div class="status">
-            <span id="clock-display">9:41</span>
-            <div style="display:flex;gap:6px">
-              <svg width="18" height="11" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="0.7" fill="#fff"/><rect x="5" y="3.5" width="3" height="7.5" rx="0.7" fill="#fff"/><rect x="10" y="1" width="3" height="10" rx="0.7" fill="#fff"/></svg>
-            </div>
-          </div>
-          <div class="push-card">
-            <div class="push-head">
-              <div class="push-logo" id="preview-logo-wrap" style="background:#FFFFFF">
-                <img id="preview-logo" src="" alt="" style="display:none">
-              </div>
-              <div class="push-text">
-                <div class="push-title" id="preview-title">Your notification title will appear here</div>
-                <div class="push-body" id="preview-body">Your notification body text will appear here.</div>
-              </div>
-              <div class="push-now">NOW</div>
-            </div>
-            <div class="push-hero">
-              <img id="preview-hero" src="" alt="" style="display:none; width:100%; height:100%; object-fit:cover;">
-              <div class="push-hero-placeholder" id="hero-placeholder">Upload a hero image</div>
-            </div>
-          </div>
-        </div>
-        <span class="btn left btn-silent"></span>
-        <span class="btn left btn-vol-up"></span>
-        <span class="btn left btn-vol-dn"></span>
-        <span class="btn right btn-power"></span>
-      </div>
-    </div>
-    <div class="export-note">Preview updates live. Click "Download PNG" to save the mockup as an image.</div>
-  </div>
-
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script>
-  // Live clock
-  function updateClock() {
-    const now = new Date();
-    let h = now.getHours(), m = now.getMinutes();
-    document.getElementById('clock-display').textContent = h + ':' + String(m).padStart(2,'0');
-  }
-  updateClock();
-  setInterval(updateClock, 10000);
+<div class="main-app" id="mainApp">
+  <div class="toolbar">
+    <span class="toolbar-title" id="toolbarTitle">SMS → Push Mockup</span>
+    <button class="tb-btn" id="resetBtn">← Start Over</button>
+    <button class="tb-btn primary" id="downloadBtn"> Download PNG</button>
+  </div>
 
-  // Title
-  document.getElementById('push-title').addEventListener('input', function() {
-    document.getElementById('preview-title').textContent = this.value || 'Your notification title will appear here';
-  });
+  <div class="canvas-area">
+    <div class="phone-scene" id="phoneScene">
 
-  // Body
-  document.getElementById('push-body').addEventListener('input', function() {
-    document.getElementById('preview-body').textContent = this.value || 'Your notification body text will appear here.';
-  });
+      <div class="phone-col">
+        <div class="phone-label">SMS</div>
+        <div class="phone-wrap" id="smsWrap">
+          <div class="phone-frame sms-frame">
+            <div class="screen">
+              <div class="sms-screen">
+                <div class="sms-status">
+                  <span id="smsTime">1:34</span>
+                  <div style="display:flex;gap:5px;align-items:center">
+                    <svg width="15" height="10" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx=".7" fill="rgba(255,255,255,.5)"/><rect x="5" y="3.5" width="3" height="7.5" rx=".7" fill="rgba(255,255,255,.5)"/><rect x="10" y="1" width="3" height="10" rx=".7" fill="rgba(255,255,255,.5)"/></svg>
+                    <svg width="12" height="10" viewBox="0 0 24 18" fill="none"><path d="M12 4.5C8.5 4.5 5.3 6 3 8.4L1 6.3C3.9 3.4 7.7 1.5 12 1.5s8.1 1.9 11 4.8l-2 2.1C18.7 6 15.5 4.5 12 4.5z" fill="rgba(255,255,255,.5)"/><path d="M12 9.5C9.8 9.5 7.8 10.4 6.3 11.9l-2-2.1C6.2 7.9 9 6.5 12 6.5s5.8 1.4 7.7 3.3l-2 2.1C16.2 10.4 14.2 9.5 12 9.5z" fill="rgba(255,255,255,.5)"/><circle cx="12" cy="16" r="2" fill="rgba(255,255,255,.5)"/></svg>
+                    <svg width="22" height="10" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="22" height="10" rx="2" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><rect x="1.5" y="2.5" width="16" height="7" rx="1" fill="rgba(255,255,255,.5)"/><path d="M23 4.5v3a1.5 1.5 0 000-3z" fill="rgba(255,255,255,.5)"/></svg>
+                  </div>
+                </div>
+                <div class="sms-contact">
+                  <div class="sms-avatar">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                  </div>
+                  <div class="sms-number"><span id="smsShortcode">82127</span> <span style="color:rgba(255,255,255,.4)">›</span></div>
+                  <div class="sms-meta">Text Message · SMS &nbsp;·&nbsp; <span id="smsDate1">Friday 8:01 AM</span></div>
+                </div>
+                <div class="sms-messages">
+                  <div class="sms-bubble" id="smsBubble1">Loading...</div>
+                  <div class="sms-date" id="smsDate2">Sunday 2:12 PM</div>
+                  <div class="sms-bubble" id="smsBubble2">Loading...</div>
+                </div>
+                <div class="sms-footer">
+                  <div class="sms-spam-warning">If you did not expect this message from an unknown sender, it may be spam.</div>
+                  <div class="sms-spam-btn">Report Spam</div>
+                </div>
+              </div>
+            </div>
+            <span class="btn-hw l bs"></span>
+            <span class="btn-hw l bv1"></span>
+            <span class="btn-hw l bv2"></span>
+            <span class="btn-hw r bpw"></span>
+          </div>
+        </div>
+      </div>
 
-  // Logo file upload
-  document.getElementById('logo-file').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-      const img = document.getElementById('preview-logo');
-      img.src = ev.target.result;
-      img.style.display = 'block';
-      const thumb = document.getElementById('logo-preview');
-      thumb.src = ev.target.result;
-      thumb.style.display = 'block';
-      document.getElementById('logo-label').style.display = 'none';
-    };
-    reader.readAsDataURL(file);
-  });
+      <div class="connector" id="connectorArea">
+        <div class="connector-symbol" id="connSymbol">→</div>
+        <div class="connector-options">
+          <span class="conn-opt active" data-sym="→" title="Arrow">→</span>
+          <span class="conn-opt" data-sym="+" title="Plus">+</span>
+          <span class="conn-opt" data-sym="" title="Heart"></span>
+          <span class="conn-opt" data-sym="" title="Fire"></span>
+          <span class="conn-opt" data-sym="" title="Sparkle"></span>
+          <span class="conn-opt" data-sym="" title="Rocket"></span>
+          <span class="conn-opt" data-sym="" title="Phone"></span>
+          <span class="conn-opt" data-sym="" title="Lightning"></span>
+        </div>
+      </div>
 
-  // Logo bg color picker
-  document.getElementById('logo-bg-color').addEventListener('input', function() {
-    document.getElementById('logo-bg-hex').value = this.value;
-    document.getElementById('preview-logo-wrap').style.background = this.value;
-  });
-  document.getElementById('logo-bg-hex').addEventListener('input', function() {
-    const val = this.value;
-    if (/^#[0-9a-fA-F]{6}$/.test(val)) {
-      document.getElementById('logo-bg-color').value = val;
-      document.getElementById('preview-logo-wrap').style.background = val;
-    }
-  });
+      <div class="phone-col">
+        <div class="phone-label">Rich Push</div>
+        <div class="phone-wrap" id="pushWrap">
+          <div class="phone-glow"></div>
+          <div class="phone-frame">
+            <div class="screen">
+              <div class="push-screen">
+                <div class="push-notch"></div>
+                <div class="push-status">
+                  <span id="pushTime">9:41</span>
+                  <div style="display:flex;gap:5px">
+                    <svg width="15" height="10" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx=".7" fill="rgba(255,255,255,.42)"/><rect x="5" y="3.5" width="3" height="7.5" rx=".7" fill="rgba(255,255,255,.42)"/><rect x="10" y="1" width="3" height="10" rx=".7" fill="rgba(255,255,255,.42)"/></svg>
+                  </div>
+                </div>
+                <div class="push-card">
+                  <div class="push-head">
+                    <div class="push-logo-wrap" id="pushLogoWrap" style="width:44px;height:44px;background:#fff">
+                      <img id="pushLogoImg" src="" alt="" style="display:none">
+                      <div class="push-logo-placeholder" id="pushLogoPlaceholder" style="font-size:8px">Logo</div>
+                    </div>
+                    <div class="push-text">
+                      <div class="push-title-display" id="pushTitleDisplay">Your notification title</div>
+                      <div class="push-body-display" id="pushBodyDisplay">Your notification body text.</div>
+                    </div>
+                    <div class="push-now">NOW</div>
+                  </div>
+                  <div class="push-hero-wrap" id="heroWrap">
+                    <img class="push-hero-img" id="heroImg" src="" alt="" style="display:none">
+                    <div class="push-hero-placeholder" id="heroPlaceholder">Upload hero image</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="btn-hw l bs"></span>
+            <span class="btn-hw l bv1"></span>
+            <span class="btn-hw l bv2"></span>
+            <span class="btn-hw r bpw"></span>
+          </div>
+        </div>
+      </div>
 
-  // Hero file upload
-  document.getElementById('hero-file').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-      setHeroImage(ev.target.result);
-      const thumb = document.getElementById('hero-preview');
-      thumb.src = ev.target.result;
-      thumb.style.display = 'block';
-      document.getElementById('hero-label').style.display = 'none';
-    };
-    reader.readAsDataURL(file);
-  });
+    </div>
+  </div>
 
-  // Hero URL
-  document.getElementById('hero-url').addEventListener('input', function() {
-    if (this.value.trim()) setHeroImage(this.value.trim());
-  });
+  <div class="editor-bar">
 
-  function setHeroImage(src) {
-    const img = document.getElementById('preview-hero');
-    const placeholder = document.getElementById('hero-placeholder');
-    img.src = src;
-    img.style.display = 'block';
-    placeholder.style.display = 'none';
-    img.onerror = function() {
-      img.style.display = 'none';
-      placeholder.style.display = 'flex';
-      placeholder.textContent = 'Image failed to load';
-    };
-  }
+    <div class="panel">
+      <div class="panel-title"> SMS Copy</div>
+      <div class="field">
+        <label>Short Code / Sender</label>
+        <input type="text" id="ed-shortcode" value="82127" maxlength="10">
+      </div>
+      <div class="field">
+        <label>Message 1 (Welcome)</label>
+        <textarea id="ed-sms1" rows="3"></textarea>
+      </div>
+      <div class="field">
+        <label>Message 2 (Promo)</label>
+        <textarea id="ed-sms2" rows="3"></textarea>
+      </div>
+    </div>
 
-  // Download PNG
-  document.getElementById('download-btn').addEventListener('click', function() {
-    const btn = this;
-    btn.textContent = 'Generating...';
-    btn.disabled = true;
-    html2canvas(document.getElementById('phone-wrap'), {
-      scale: 2,
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: null,
-      logging: false
-    }).then(function(canvas) {
-      const link = document.createElement('a');
-      link.download = 'push-mockup.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-      btn.textContent = ' Download PNG';
-      btn.disabled = false;
-    }).catch(function() {
-      alert('Download failed. If using external image URLs, try uploading the file instead (CORS restriction).');
-      btn.textContent = ' Download PNG';
-      btn.disabled = false;
-    });
-  });
-</script>
+    <div class="panel">
+      <div class="panel-title"> Push Content</div>
+      <div class="field">
+        <label>Title</label>
+        <input type="text" id="ed-pushTitle">
+        <div class="emoji-row" id="titleEmojis">
+          <span class="emoji-btn" data-target="ed-pushTitle"></span>
+          <span class="emoji-btn" data-target="ed-pushTitle"></span>
+          <span class="emoji-btn" data-target="ed-pushTitle"></span>
+          <span class="emoji-btn" data-target="ed-pushTitle"></span>
+          <span class="emoji-btn" data-target="ed-pushTitle"></span>
+          <span class="emoji-btn" data-target="ed-pushTitle"></span>
+          <span class="emoji-btn" data-target="ed-pushTitle"></span>
+          <span class="emoji-btn" data-target="ed-pushTitle"></span>
+          <span class="emoji-btn" data-target="ed-pushTitle"></span>
+          <span class="emoji-btn" data-target="ed-pushTitle"></span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Body (wraps at 30 chars)</label>
+        <textarea id="ed-pushBody" rows="3"></textarea>
+        <div class="emoji-row">
+          <span class="emoji-btn" data-target="ed-pushBody">→</span>
+          <span class="emoji-btn" data-target="ed-pushBody"></span>
+          <span class="emoji-btn" data-target="ed-pushBody"></span>
+          <span class="emoji-btn" data-target="ed-pushBody"></span>
+          <span class="emoji-btn" data-target="ed-pushBody">⮕</span>
+          <span class="emoji-btn" data-target="ed-pushBody"></span>
+          <span class="emoji-btn" data-target="ed-pushBody"></span>
+          <span class="emoji-btn" data-target="ed-pushBody"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"> App Logo</div>
+      <div class="field">
+        <label>Upload Logo</label>
+        <div class="upload-box" id="logoUploadBox">
+          <div id="logoUploadText">Click to upload</div>
+          <img id="logoThumb" class="upload-thumb" style="display:none">
+          <input type="file" accept="image/*" id="logoFile">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>
