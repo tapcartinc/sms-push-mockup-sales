@@ -391,7 +391,10 @@ function populateCopy(){
 
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function renderSms1(v){
-  var html=esc(v).replace(/(help@\S{4,}?)(\S{4,})$/,function(m,a,b){
+  var html=esc(v).replace(/(help@)(\S+)/,function(m,prefix,rest){
+    var mid=Math.max(4,Math.floor(rest.length/2));
+    var a=prefix+rest.slice(0,mid);
+    var b=rest.slice(mid);
     return '<a href="#" style="color:#007AFF;text-decoration:underline">'+a+'<br>'+b+'</a>';
   });
   document.getElementById('dSms1').innerHTML=html;
