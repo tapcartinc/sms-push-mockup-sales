@@ -79,7 +79,7 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
 .status.locked{color:rgba(255,255,255,.42);filter:blur(.7px)}
 .status.locked .icons{opacity:.55;filter:blur(.4px)}
 .msg-back{position:absolute;top:56px;left:16px;color:#007AFF;font-size:28px;font-weight:400;line-height:1;z-index:4}
-.recipient-block{padding:50px 0 4px;display:flex;flex-direction:column;align-items:center}
+.recipient-block{padding:38px 0 2px;display:flex;flex-direction:column;align-items:center}
 .avatar{width:50px;height:50px;border-radius:50%;background:#5a5a5d;margin:4px auto;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .avatar svg{display:block;width:100%;height:100%}
 .recipient{color:#fff;font-size:12px;font-weight:500;letter-spacing:.05px;margin-top:1px}
@@ -90,7 +90,7 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
 .bubble{position:relative;overflow:visible;background:#1c1c1e;color:#fff;border-radius:18px;padding:8px 13px 9px;font-size:13px;line-height:1.4;margin-top:2px;max-width:280px;letter-spacing:.1px;word-wrap:break-word;white-space:pre-wrap}
 .bubble a{color:#007AFF;text-decoration:underline}
 .timestamp{text-align:center;color:#8e8e93;font-size:11px;margin-top:12px;margin-bottom:2px;font-weight:400;letter-spacing:.1px}
-.spam-warn{text-align:center;color:#8e8e93;font-size:10.5px;font-weight:600;line-height:1.3;padding:0 18px;margin-top:28px;margin-bottom:16px}
+.spam-warn{text-align:center;color:#8e8e93;font-size:10.5px;font-weight:600;line-height:1.3;padding:0 18px;margin-top:12px;margin-bottom:8px}
 .spam-btn{display:inline-block;background:#1c1c1e;color:#007AFF;font-size:11px;font-weight:700;padding:5px 16px;border-radius:14px;margin-top:8px}
 .push-card{position:absolute;top:60px;left:12px;right:12px;border-radius:18px;overflow:hidden;color:#fff;z-index:5;background:transparent}
 .push-head{background:linear-gradient(180deg,rgba(110,115,140,.55) 0%,rgba(80,85,110,.52) 100%);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:12px;gap:10px}
@@ -268,13 +268,8 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
 
       <div class="phone-clip">
         <div class="phone-wrap right">
-          <div class="phone-glow"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="phone navy">
+         <div class="phone-glow"></div>
+          <div class="phone navy">
             <div class="screen lock">
               <div class="notch"></div>
               <div class="status locked">
@@ -384,10 +379,16 @@ function populateCopy(){
   renderBody(pb);
 }
 
-function renderSms1(v){document.getElementById('dSms1').textContent=v;}
-function renderSms2(bn,promo,url){
-  document.getElementById('dSms2').textContent=bn+': '+promo+'\n\n'+url+'\n\nReply STOP to end.';
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function renderSms1(v){
+  var html=esc(v).replace(/(help@)(\S+)/,'<a href="#" style="color:#007AFF;text-decoration:underline">$1<br>$2</a>');
+  document.getElementById('dSms1').innerHTML=html;
 }
+function renderSms2(bn,promo,url){
+  var html=esc(bn+': '+promo)+'\n\n<a href="#" style="color:#007AFF;text-decoration:underline;word-break:break-all">'+esc(url)+'</a>\n\nReply STOP to end.';
+  document.getElementById('dSms2').innerHTML=html;
+}
+
 function renderTitle(v){document.getElementById('dTitle').textContent=v||'Your notification title';}
 function renderBody(v){document.getElementById('dBody').textContent=wrapAt30(v||'Your notification body.');}
 
