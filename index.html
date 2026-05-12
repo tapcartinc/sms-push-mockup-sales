@@ -95,7 +95,7 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
 .push-card{position:absolute;top:60px;left:12px;right:12px;border-radius:18px;overflow:hidden;color:#fff;z-index:5;background:transparent}
 .push-head{background:linear-gradient(180deg,rgba(110,115,140,.55) 0%,rgba(80,85,110,.52) 100%);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:12px;gap:10px}
 .push-logo{width:52px;height:52px;border-radius:11px;flex-shrink:0;overflow:hidden}
-.push-logo.placeholder{background:rgba(20,22,28,.95);border:1px dashed rgba(255,255,255,.45);color:rgba(255,255,255,.85);font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;display:flex;align-items:center;justify-content:center}
+.push-logo.placeholder{background:#ffffff;border:1px dashed rgba(255,255,255,.45);color:rgba(255,255,255,.85);font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;display:flex;align-items:center;justify-content:center}
 .push-logo img{width:100%;height:100%;object-fit:cover;display:block}
 .push-text{flex:1;min-width:0}
 .push-title{color:#fff;font-size:13.5px;font-weight:700;line-height:1.2;letter-spacing:-.01em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
@@ -159,7 +159,7 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
 
       <div class="sec">
         <div class="sec-title"> SMS Copy</div>
-        <div class="f"><label>Message 1 (Welcome)</label><textarea id="eSms1" rows="4"></textarea></div>
+        <div class="f"><label>Message 1 (after brand name)</label><textarea id="eSms1body" rows="3" placeholder="We're glad you joined!..."></textarea></div>
         <div class="f"><label>Message 2 (Promo body)</label><textarea id="eSms2promo" rows="3" placeholder="The promo message line"></textarea></div>
         <div class="f"><label>Promo URL</label><input type="text" id="eSms2url" placeholder="https://brand.com/abc123"></div>
       </div>
@@ -169,15 +169,15 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
         <div class="f">
           <label>Title</label>
           <input type="text" id="eTitle">
-          <div class="erow">
-            <span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span><span class="ebtn" data-t="eTitle"></span>
+          <div style="display:flex;gap:4px;margin-top:3px">
+            <button type="button" onclick="openPicker('eTitle')" style="font-size:18px;background:none;border:none;cursor:pointer;padding:2px;line-height:1" title="Emoji picker">😊</button>
           </div>
         </div>
         <div class="f">
           <label>Body (wraps at 30 chars)</label>
           <textarea id="eBody" rows="3"></textarea>
-          <div class="erow">
-            <span class="ebtn" data-t="eBody">→</span><span class="ebtn" data-t="eBody">⮕</span><span class="ebtn" data-t="eBody">🛍️</span><span class="ebtn" data-t="eBody">💫</span><span class="ebtn" data-t="eBody">🎁</span><span class="ebtn" data-t="eBody">🔑</span><span class="ebtn" data-t="eBody">💎</span><span class="ebtn" data-t="eBody">🌟</span>
+          <div style="display:flex;gap:4px;margin-top:3px">
+            <button type="button" onclick="openPicker('eBody')" style="font-size:18px;background:none;border:none;cursor:pointer;padding:2px;line-height:1" title="Emoji picker">😊</button>
           </div>
         </div>
       </div>
@@ -192,7 +192,6 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
       <div class="sec">
         <div class="sec-title"> Hero Image</div>
         <div class="f"><label>Upload</label><div class="ubox">Click to upload<input type="file" accept="image/*" id="heroFile"></div></div>
-        <div class="f"><label>Or URL</label><input type="text" id="heroUrl" placeholder="https://..."></div>
         <div class="f"><label>Zoom</label><div class="srow"><input type="range" id="heroZoom" min="50" max="250" value="100"><span id="heroZmV">100%</span></div></div>
         <div style="font-size:10px;color:#aaa;line-height:1.5;margin-top:-4px">Drag image to reposition</div>
       </div>
@@ -200,19 +199,27 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
       <div class="sec">
         <div class="sec-title"> Connector</div>
         <div class="f"><label>Symbol</label>
-          <select id="connSel">
-            <option value="arrow">→ Arrow (default)</option>
-            <option value=""> Heart</option>
-            <option value=""> Fire</option>
-            <option value=""> Sparkle</option>
-            <option value=""> Rocket</option>
-            <option value=""> Phone</option>
-            <option value=""> Lightning</option>
-            <option value=""> Plus</option>
-            <option value=""> Soon</option>
-            <option value=""> VS</option>
+          <select id="connSel" style="font-size:20px">
+            <option value="arrow">→</option>
+            <option value="❤️">❤️</option>
+            <option value="🔥">🔥</option>
+            <option value="✨">✨</option>
+            <option value="🚀">🚀</option>
+            <option value="📲">📲</option>
+            <option value="⚡">⚡</option>
+            <option value="+">+</option>
+            <option value="SOON">SOON</option>
+            <option value="VS">VS</option>
           </select>
         </div>
+      </div>
+
+      <div id="emojiPicker" style="display:none;position:fixed;z-index:9999;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:10px;box-shadow:0 8px 32px rgba(0,0,0,.15);width:260px;max-height:300px;overflow-y:auto;flex-wrap:wrap;gap:4px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #f0f0f0">
+          <span style="font-size:11px;font-weight:700;color:#999;text-transform:uppercase">Emoji</span>
+          <button onclick="closePicker()" style="font-size:16px;background:none;border:none;cursor:pointer;color:#999;line-height:1">✕</button>
+        </div>
+        <div id="emojiGrid" style="display:flex;flex-wrap:wrap;gap:6px"></div>
       </div>
 
     </div>
@@ -268,7 +275,7 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
 
       <div class="phone-clip">
         <div class="phone-wrap right">
-         <div class="phone-glow"></div>
+          <div class="phone-glow"></div>
           <div class="phone navy">
             <div class="screen lock">
               <div class="notch"></div>
@@ -276,6 +283,8 @@ html,body{height:100%;font-family:-apple-system,"SF Pro Text","SF Pro Display","
                 <span>1:34</span>
                 <div class="icons">
                   <svg width="17" height="12" viewBox="0 0 18 11" fill="none"><rect x="0" y="6" width="3" height="5" rx=".7" fill="#fff"/><rect x="5" y="3.5" width="3" height="7.5" rx=".7" fill="#fff"/><rect x="10" y="1" width="3" height="10" rx=".7" fill="#fff"/></svg>
+                  <svg width="16" height="12" viewBox="0 0 24 18" fill="none"><path d="M12 4.5C8.5 4.5 5.3 6 3 8.4L1 6.3C3.9 3.4 7.7 1.5 12 1.5s8.1 1.9 11 4.8l-2 2.1C18.7 6 15.5 4.5 12 4.5z" fill="#fff"/><path d="M12 9.5C9.8 9.5 7.8 10.4 6.3 11.9l-2-2.1C6.2 7.9 9 6.5 12 6.5s5.8 1.4 7.7 3.3l-2 2.1C16.2 10.4 14.2 9.5 12 9.5z" fill="#fff"/><circle cx="12" cy="16" r="2" fill="#fff"/></svg>
+                  <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="22" height="10" rx="2" stroke="#fff" stroke-width="1.5"/><rect x="1.5" y="2.5" width="16" height="7" rx="1" fill="#fff"/><path d="M23 4.5v3a1.5 1.5 0 000-3z" fill="#fff"/></svg>
                 </div>
               </div>
               <div class="push-card">
@@ -368,7 +377,8 @@ function populateCopy(){
   var pt=fill(hasPerson?v.pushName:v.pushStd);
   var pb=fill(hasPerson?v.pushNameBody:v.pushStdBody);
   document.getElementById('eBrandName').value=brandName;
-  document.getElementById('eSms1').value=sms1;
+  var sms1body=sms1.replace(brandName+': ','');
+  document.getElementById('eSms1body').value=sms1body;
   document.getElementById('eSms2promo').value=promoLine;
   document.getElementById('eSms2url').value=promoUrl;
   document.getElementById('eTitle').value=pt;
@@ -381,7 +391,9 @@ function populateCopy(){
 
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function renderSms1(v){
-  var html=esc(v).replace(/(help@)(\S+)/,'<a href="#" style="color:#007AFF;text-decoration:underline">$1<br>$2</a>');
+  var html=esc(v).replace(/(help@\S{4,}?)(\S{4,})$/,function(m,a,b){
+    return '<a href="#" style="color:#007AFF;text-decoration:underline">'+a+'<br>'+b+'</a>';
+  });
   document.getElementById('dSms1').innerHTML=html;
 }
 function renderSms2(bn,promo,url){
@@ -395,14 +407,17 @@ function renderBody(v){document.getElementById('dBody').textContent=wrapAt30(v||
 // Brand name
 document.getElementById('eBrandName').addEventListener('input',function(){
   brandName=this.value;
+  var bodyVal=document.getElementById('eSms1body').value;
+  renderSms1(brandName+': '+bodyVal);
   var promo=document.getElementById('eSms2promo').value;
   var url=document.getElementById('eSms2url').value;
-  renderSms1(buildSms1(brandName,brandUrl));
   renderSms2(brandName,promo,url);
   document.getElementById('toolTitle').textContent=brandName;
 });
 document.getElementById('eCode').addEventListener('input',function(){document.getElementById('dShortcode').textContent=this.value;});
-document.getElementById('eSms1').addEventListener('input',function(){renderSms1(this.value);});
+document.getElementById('eSms1body').addEventListener('input',function(){
+  renderSms1(brandName+': '+this.value);
+});
 document.getElementById('eSms2promo').addEventListener('input',function(){
   renderSms2(brandName,this.value,document.getElementById('eSms2url').value);
 });
@@ -411,16 +426,6 @@ document.getElementById('eSms2url').addEventListener('input',function(){
 });
 document.getElementById('eTitle').addEventListener('input',function(){renderTitle(this.value);});
 document.getElementById('eBody').addEventListener('input',function(){renderBody(this.value);});
-
-// Emoji buttons
-document.querySelectorAll('.ebtn').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    var t=document.getElementById(btn.dataset.t);if(!t)return;
-    var p=t.selectionStart||t.value.length;
-    t.value=t.value.slice(0,p)+btn.textContent+t.value.slice(p);
-    t.dispatchEvent(new Event('input'));t.focus();
-  });
-});
 
 // Connector dropdown
 document.getElementById('connSel').addEventListener('change',function(){
@@ -437,13 +442,14 @@ document.getElementById('logoFile').addEventListener('change',function(e){
   var r=new FileReader();r.onload=function(ev){
     var el=document.getElementById('logoEl');
     el.className='push-logo';
+    el.style.background=document.getElementById('logoBgH').value||'#ffffff';
     el.innerHTML='<img src="'+ev.target.result+'" alt="">';
   };r.readAsDataURL(f);
 });
 document.getElementById('logoSize').addEventListener('input',function(){
   document.getElementById('logoSzV').textContent=this.value;
-  var el=document.getElementById('logoEl');
-  el.style.width=this.value+'px';el.style.height=this.value+'px';
+  var img=document.getElementById('logoEl').querySelector('img');
+  if(img){img.style.width=this.value+'px';img.style.height=this.value+'px';img.style.objectFit='contain';}
 });
 document.getElementById('logoBgC').addEventListener('input',function(){
   document.getElementById('logoBgH').value=this.value;
@@ -485,7 +491,6 @@ heroEl.addEventListener('touchstart',function(e){if(!heroEl.querySelector('img')
 document.addEventListener('touchmove',function(e){if(!heroDrag)return;heroOffX+=(e.touches[0].clientX-heroDragX);heroOffY+=(e.touches[0].clientY-heroDragY);heroDragX=e.touches[0].clientX;heroDragY=e.touches[0].clientY;posHero();},{passive:false});
 document.addEventListener('touchend',function(){heroDrag=false;});
 document.getElementById('heroFile').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){loadHero(ev.target.result);};r.readAsDataURL(f);});
-document.getElementById('heroUrl').addEventListener('input',function(){if(this.value.trim())loadHero(this.value.trim());});
 document.getElementById('heroZoom').addEventListener('input',function(){heroZoom=parseInt(this.value)/100;document.getElementById('heroZmV').textContent=this.value+'%';posHero();});
 
 // Reset
@@ -507,6 +512,43 @@ document.getElementById('dlBtn').addEventListener('click',function(){
     alert('Download failed. Upload images as files instead of URLs.');
     btn.textContent=' PNG';btn.disabled=false;
   });
+});
+
+var pickerTarget=null;
+var EMOJIS=['😊','🔥','✨','💜','🎉','⚡','🌸','👑','💫','🛍️','🌿','🌊','💎','🎁','🔑','🌟','❤️','🙌','🥳','🚀','💪','👏','🍃','🌺','🦋','🎯','✅','💥','🌈','🏆','😍','🤩','🥰','😎','🙏','💝','💖','💗','🌙','⭐','🔮','🎀','🎊','🎸','🌻','🍀','🦄','🐝','🍓','🍋'];
+function openPicker(targetId){
+  pickerTarget=targetId;
+  var grid=document.getElementById('emojiGrid');
+  grid.innerHTML='';
+  EMOJIS.forEach(function(e){
+    var btn=document.createElement('button');
+    btn.textContent=e;
+    btn.type='button';
+    btn.style.cssText='font-size:22px;background:none;border:none;cursor:pointer;padding:3px;border-radius:4px;line-height:1';
+    btn.onmouseover=function(){this.style.background='#f0eeff'};
+    btn.onmouseout=function(){this.style.background='none'};
+    btn.onclick=function(){insertEmoji(e)};
+    grid.appendChild(btn);
+  });
+  var picker=document.getElementById('emojiPicker');
+  var btnEl=event.target;
+  var rect=btnEl.getBoundingClientRect();
+  picker.style.display='block';
+  picker.style.left=(rect.left+rect.width+4)+'px';
+  picker.style.top=Math.min(rect.top,window.innerHeight-320)+'px';
+}
+function insertEmoji(e){
+  var t=document.getElementById(pickerTarget);if(!t)return;
+  var p=t.selectionStart||t.value.length;
+  t.value=t.value.slice(0,p)+e+t.value.slice(p);
+  t.dispatchEvent(new Event('input'));
+  t.focus();
+  closePicker();
+}
+function closePicker(){document.getElementById('emojiPicker').style.display='none';}
+document.addEventListener('click',function(e){
+  var picker=document.getElementById('emojiPicker');
+  if(picker.style.display!=='none'&&!picker.contains(e.target)&&!e.target.closest('[onclick^="openPicker"]')){closePicker();}
 });
 </script>
 </body>
