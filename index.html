@@ -443,14 +443,51 @@ document.getElementById('logoFile').addEventListener('change',function(e){
     var el=document.getElementById('logoEl');
     el.className='push-logo';
     el.style.background=document.getElementById('logoBgH').value||'#ffffff';
-    el.innerHTML='<img src="'+ev.target.result+'" alt="">';
+    el.style.position='relative';el.style.overflow='hidden';
+    el.innerHTML='<img src="'+ev.target.result+'" alt="" id="logoImg" style="position:absolute;cursor:grab;user-select:none;pointer-events:none;">';
+    logoOffX=0;logoOffY=0;
+    var li=document.getElementById('logoImg');
+    li.onload=function(){posLogo();};
+    if(li.complete)posLogo();
   };r.readAsDataURL(f);
 });
+
+var logoOffX=0,logoOffY=0,logoDrag=false,logoDragX=0,logoDragY=0,logoZoom=1;
+
+function posLogo(){
+  var el=document.getElementById('logoEl');
+  var img=document.getElementById('logoImg');
+  if(!img)return;
+  var sz=parseInt(document.getElementById('logoSize').value)||52;
+  var cw=el.offsetWidth||52,ch=el.offsetHeight||52;
+  img.style.width=sz+'px';
+  img.style.height=sz+'px';
+  img.style.objectFit='contain';
+  img.style.left=((cw-sz)/2+logoOffX)+'px';
+  img.style.top=((ch-sz)/2+logoOffY)+'px';
+}
+
+document.getElementById('logoEl').addEventListener('mousedown',function(e){
+  if(!document.getElementById('logoImg'))return;
+  logoDrag=true;logoDragX=e.clientX;logoDragY=e.clientY;
+  document.getElementById('logoEl').style.cursor='grabbing';
+  e.preventDefault();
+});
+document.addEventListener('mousemove',function(e){
+  if(!logoDrag)return;
+  logoOffX+=(e.clientX-logoDragX);logoOffY+=(e.clientY-logoDragY);
+  logoDragX=e.clientX;logoDragY=e.clientY;
+  posLogo();
+});
+document.addEventListener('mouseup',function(){
+  if(logoDrag){logoDrag=false;var el=document.getElementById('logoEl');if(el)el.style.cursor='grab';}
+});
+
 document.getElementById('logoSize').addEventListener('input',function(){
   document.getElementById('logoSzV').textContent=this.value;
-  var img=document.getElementById('logoEl').querySelector('img');
-  if(img){img.style.width=this.value+'px';img.style.height=this.value+'px';img.style.objectFit='contain';}
+  posLogo();
 });
+
 document.getElementById('logoBgC').addEventListener('input',function(){
   document.getElementById('logoBgH').value=this.value;
   document.getElementById('logoEl').style.background=this.value;
